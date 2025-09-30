@@ -29,8 +29,12 @@ footer{
     width: 900px;
     text-align: right;
 }
+.workImages{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
 .workImages img {
-  width: 260px;      /* control image width */
+  width: 100%;      /* control image width */
   height: auto;      /* keep aspect ratio */
   margin: 20px;      /* space around each image */
 }
