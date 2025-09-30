@@ -1,0 +1,40 @@
+body{font-family:'Times New Roman', Times, serif;}
+a{
+    display: block;
+    font-weight: bold;
+    font-size: px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    color: black;
+}
+/* this is my navigation */
+nav {
+    margin-top: 50px;
+    margin-left: 50px;
+    float: left;
+}
+header{
+    width: 900px;
+    text-align: right;
+}
+.wrapper{
+    float: right;
+    width: 60%;
+}
+main{
+    text-align: justify;
+    width: 900px;
+}
+footer{
+    width: 900px;
+    text-align: right;
+}
+.workImages{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.workImages img {
+  width: 100%;      /* control image width */
+  height: auto;      /* keep aspect ratio */
+  margin: 20px;      /* space around each image */
+}
