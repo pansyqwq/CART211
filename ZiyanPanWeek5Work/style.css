@@ -71,7 +71,8 @@ nav a{
     max-width: 100%;
     gap: 16px;
 }
-im1{
+
+.im1{
     grid-column: 1/4;
 }
 im2{
@@ -83,6 +84,7 @@ im3{
 im4{
     grid-column: 10/13;
 }
+
 
 .books img{
  display: block;
