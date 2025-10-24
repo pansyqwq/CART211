@@ -1,5 +1,8 @@
-body{font-family:'Times New Roman', Times, serif;}
-a{
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+a {
     display: block;
     font-weight: bold;
     font-size: px;
@@ -7,102 +10,89 @@ a{
     text-decoration: none;
     color: black;
 }
+
 /* this is my navigation */
 nav {
-    margin-top: 50px;
+    margin-top: 5px;
     margin-right: 50px;
+    margin-bottom: 50px;
     float: right;
 }
+
 nav a {
-  display: inline-block;      /* make links sit side by side */
-  margin: 0 10px;             /* space between links */
-  text-decoration: none;      /* remove underline */
-  color: black;               /* or any color you want */
-  font-weight: bold;
+    display: inline-block;
+    /* make links sit side by side */
+    margin: 0 10px;
+    /* space between links */
+    text-decoration: none;
+    /* remove underline */
+    color: black;
+    /* or any color you want */
+    font-weight: bold;
 }
-header{
+
+
+header {
+    margin-top: 100px;
     text-align: left;
 }
-.wrapper{
-    margin: 0 auto;  
+
+.wrapper {
+    margin: 300px auto 0;
     width: 60%;
 }
-img{
-   width: 100%; ; 
+
+img {
+    width: 100%;
 }
-main{
+
+main {
     text-align: justify;
-    
+
 }
-footer{
+
+footer {
     text-align: right;
 }
-.workImages{
+
+.books {
     display: grid;
-    grid-template-columns: auto auto auto;
-}
-.workImages img {
-  width: 100%;      /* control image width */
-  height: auto;      /* keep aspect ratio */
-  margin: 20px;      /* space around each image */
-}
-@media (max-width: 480px) {
-nav{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
-    background-color: black;
-    margin-top: 0px;
-    padding-top: 10px;
-}
-.wrapper{
-    float: none;
-    width: 100%;
-}
-nav a{
-    color: white;
-}   
-.workImages{
-    display: grid;
-    grid-template-columns: auto auto;
-}
-   /* h1{color: red;}
-   p{color: blue;} */
-}
-.books{
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
+    grid-template-columns: repeat(12, 1fr);
     /* grid-template-columns: auto auto auto; */
     max-width: 100%;
     gap: 16px;
 }
 
-.im1{
+.im1 {
     grid-column: 1/4;
 }
-.im2{
+
+.im2 {
     grid-column: 4/7;
 }
-.im3{
+
+.im3 {
     grid-column: 7/10;
 }
-.im4{
+
+.im4 {
     grid-column: 10/13;
 }
-.im5{
+
+.im5 {
     grid-column: 13/16;
 }
-.img6{
+
+.img6 {
     grid-column: 16/19;
 }
 
 .books figure {
     margin: 0;
 }
-.books img{
- display: block;
- width: 100%;
- height:auto;
+
+.books img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
