@@ -10,11 +10,17 @@ a{
 /* this is my navigation */
 nav {
     margin-top: 50px;
-    margin-left: 50px;
-    float: left;
+    margin-right: 50px;
+    float: right;
+}
+nav a {
+  display: inline-block;      /* make links sit side by side */
+  margin: 0 10px;             /* space between links */
+  text-decoration: none;      /* remove underline */
+  color: black;               /* or any color you want */
+  font-weight: bold;
 }
 header{
-    
     text-align: left;
 }
 .wrapper{
