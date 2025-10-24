@@ -67,7 +67,8 @@ nav a{
 }
 .books{
     display: grid;
-    grid-template-columns: repeat(12,1fr);
+    /* grid-template-columns: repeat(12,1fr); */
+    grid-template-columns: auto auto auto;
     max-width: 100%;
     gap: 16px;
 }
@@ -75,19 +76,19 @@ nav a{
 .im1{
     grid-column: 1/4;
 }
-im2{
+.im2{
     grid-column: 4/7;
 }
-im3{
+.im3{
     grid-column: 7/10;
 }
-im4{
+.im4{
     grid-column: 10/13;
 }
 
 
 .books img{
  display: block;
+ width: 100%;
  height:auto;
-
 }
