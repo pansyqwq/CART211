@@ -31,7 +31,7 @@ header {
 }
 
 .wrapper {
-    margin: 30px auto 0;
+    margin: 0px auto 0;
     width: 60%;
 }
 
@@ -53,11 +53,11 @@ footer {
     grid-template-columns: repeat(12, 1fr);
     /* grid-template-columns: auto auto auto; */
     /* if you used auto auto auto, it would create 3 columns that are just wide enough to fit their content — instead of equally splitting space like 1fr. */
-    max-width: 60%;
+    max-width: 100%;
     gap: 16px;
 }
 
-.im1 {
+/* .im1 {
     grid-column: 1/4;
 }
 
@@ -71,15 +71,24 @@ footer {
 
 .im4 {
     grid-column: 10/13;
-}
+} */
 
-.im5 {
-    grid-column: 13/16;
-}
-
-.img6 {
-    grid-column: 16/19;
-}
+.books figure:has(img.im1) { grid-column: 1 / 4; }
+.books figure:has(img.im2) { grid-column: 4 / 7; }
+.books figure:has(img.im3) { grid-column: 7 / 13; }
+.books figure:has(img.im4) { grid-column: 1 / 4; }
+.books figure:has(img.im5) { grid-column: 4/ 7; }
+.books figure:has(img.im6) { grid-column: 7/ 13; }
+.books figure:has(img.im7) { grid-column: 1 / 4; }
+.books figure:has(img.im8) { grid-column: 4/ 7; }
+.books figure:has(img.im9) { grid-column: 7/ 10; }
+.books figure:has(img.im10) { grid-column: 10/ 13; }
+.books figure:has(img.im11) { grid-column: 1/ 7; }
+.books figure:has(img.im12) { grid-column: 7/ 10; }
+.books figure:has(img.im13) { grid-column: 10/ 13; }
+.books figure:has(img.im14) { grid-column: 1/ 4; }
+.books figure:has(img.im15) { grid-column: 4/ 10; }
+.books figure:has(img.im16) { grid-column: 10 / 13; }
 
 .books figure {
     margin: 0;
