@@ -89,6 +89,12 @@ footer {
 .books figure:has(img.im14) { grid-column: 1/ 4; }
 .books figure:has(img.im15) { grid-column: 4/ 10; }
 .books figure:has(img.im16) { grid-column: 10 / 13; }
+/* we cannot directly put .im1
+because the im are under class book, 
+it will not work since .im is automatically considered under <figure>, 
+there is not a class .im under figure
+therefore it will not work
+*/
 
 .books figure {
     margin: 0;
