@@ -2,21 +2,14 @@ body {
     font-family: 'Times New Roman', Times, serif;
 }
 
-a {
-    display: block;
-    font-weight: bold;
-    font-size: px;
-    margin-bottom: 16px;
-    text-decoration: none;
-    color: black;
-}
-
 /* this is my navigation */
 nav {
+    display: flex;
+    justify-content: flex-end; /* push links to the right */
+    gap: 10px;                 /* space between links */
     margin-top: 5px;
     margin-right: 50px;
     margin-bottom: 50px;
-    float: right;
 }
 
 nav a {
@@ -33,12 +26,12 @@ nav a {
 
 
 header {
-    margin-top: 100px;
+    margin-top: 0px;
     text-align: left;
 }
 
 .wrapper {
-    margin: 300px auto 0;
+    margin: 30px auto 0;
     width: 60%;
 }
 
@@ -59,7 +52,8 @@ footer {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     /* grid-template-columns: auto auto auto; */
-    max-width: 100%;
+    /* if you used auto auto auto, it would create 3 columns that are just wide enough to fit their content — instead of equally splitting space like 1fr. */
+    max-width: 60%;
     gap: 16px;
 }
 
