@@ -122,3 +122,10 @@ therefore it will not work
   display: block;
   opacity: 1; /* fade in on hover */
 }
+
+.logo {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
