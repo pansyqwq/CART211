@@ -99,7 +99,7 @@ therefore it will not work
   transform: scale(1.05);
   opacity: 0.9;
   /* optional: subtle shadow like index page feel */
-  filter: drop-shadow(20px);
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,.25));
 }
 
 /* Overlay label that fades in on hover */
@@ -144,5 +144,133 @@ therefore it will not work
     margin: 0 auto;
     text-align: center;
     font-weight: 200;
+}
+
+.hamburger-menu {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger-menubutton {
+    background: none;
+    border: none;
+    color: gray;
+}
+
+.hamburger-menu .fa-bars {
+    cursor: pointer;
+    font-size: 2.5em;
+}
+
+.close-menu {
+    display: none;
+}
+
+
+
+ /* MOBILE VERSION  */
+@media (max-width: 780px) {
+
+  /* NAVIGATION MOBILE LAYOUT */
+  nav {
+    justify-content: space-between;
+    margin: 10px 20px;
+  }
+
+  .menu1 {
+    display: none;   /* hide normal menu on small screens */
+  }
+
+  .hamburger-menu {
+    display: block; /* show hamburger on small screens */
+  }
+
+  .hamburger-menu button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 1.4em;
+    cursor: pointer;
+  }
+
+  /* LOGO adjustment (optional) */
+  .logo img {
+    width: 80px;
+    height: auto;
+  }
+
+  /* GRID becomes 2 columns on mobile */
+  .books {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* All images fill their column */
+  .books figure {
+    grid-column: auto !important;  /* removes your original placement */
+  }
+
+  .books img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Text smaller for phone */
+  body {
+    font-size: 14px;
+  }
+
+  /* Footer spacing on mobile */
+  footer {
+    margin-top: 30px;
+  }
+  /* Make the overlay fill the screen when deployed */
+.menu1.menu-deployed {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  inset: 0;              /* top/right/bottom/left = 0 */
+  width: 100vw;
+  height: 100vh;
+
+  background: white;
+  z-index: 9999;
+  gap: 24px;
+  padding: 60px 20px 24px;
+}
+
+/* Show the close “X” only when deployed */
+.menu1.menu-deployed .close-menu {
+  display: block;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: 0;
+  font-size: 2rem;
+  line-height: 1;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Overlay link styling */
+.menu1.menu-deployed a {
+  font-size: clamp(20px, 5vw, 28px);
+  color: #333;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.menu1.menu-deployed a:hover {
+  color: #999;
+}
+
 }
 

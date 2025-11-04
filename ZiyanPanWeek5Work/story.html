@@ -15,7 +15,7 @@
     <!-- stylesheet is style.css / href is from-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://kit.fontawesome.com/0d8336c3af.js" crossorigin="anonymous"></script>
-    <!-- fontawesome link: easy to get icon -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,6 +33,7 @@
         </div>
 
         <div class="menu1">
+            <button class="close-menu" aria-label="Close menu">&times;</button> 
             <a href="story.html">STORIES |</a>
             <a href="series.html">SERIES |</a>
             <a href="index.html">ABOUT</a>
@@ -147,6 +148,23 @@
                     </div>
         </footer>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerButton = document.querySelector('.hamburger-menu button');
+            const closeButton = document.querySelector('.close-menu');
+            const menu1 = document.querySelector('.menu1');
+
+            //gestion de l'ouverture de menu
+            hamburgerButton.addEventListener('click', () => {
+                menu1.classList.add('menu-deployed');
+            });
+
+            //gestion de la fermeture du menu
+            closeButton.addEventListener('click', () => {
+                menu1.classList.remove('menu-deployed');
+            });
+        });
+    </script>
 </body>
 
 </html>
