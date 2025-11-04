@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Humans of New York</title>
+    <meta name="description" content="Explore the work Humans of new York.">
+    <meta property="og:title" content="Humans of New York">
+    <meta propety="og:description" content="humans of new york is an ...">
+    <!-- property is used for social media title.  -->
+    <meta name="author" content="Your Name">
+    <meta name="copyright" content="© weini wang, cart 211 project, fall 2025,">
+    <link rel="stylesheet" href="style.css">
+    <!-- stylesheet is style.css / href is from-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0d8336c3af.js" crossorigin="anonymous"></script>
+    <!-- fontawesome link: easy to get icon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <!-- copy font from googlefont -->
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- div is the box. the name of that divation -->
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="assets/logo.png" alt="logo of the humans of new york project"
+                        width="100px" height="50px"></a>
+            </div>
+            <div class="menu1">
+                <button class="close-menu">&times;</button>
+                <a href="stories.html">STORIES</a>
+                <a href="series.html">SERIES</a>
+                <a href="index.html">ABOUT</a>
+                <!-- everthing inside the <>is always win the style.css -->
+            </div>
+            <div class="hamburger-menu">
+                <button>
+                    <span class="fa fa-bars"></span>
+                </button>
+            </div>
+        </nav>
+
+        <header>
+            <h1>Humans of New York</h1>
+            <p>Humans of New York began as Brandon Stanton photography project in 2010. The initial goal was to
+                photograph 10,000 New
+                Yorkers on the street, and create an exhaustive catalogue of the city’s inhabitants.</p>
+            <p>Taken together, these portraits and captions became the subject of a vibrant blog. HONY now has over
+                twenty million
+                followers on social media, and provides a worldwide audience with daily glimpses into the lives of
+                strangers on the
+                streets of New York City.</p>
+        </header>
+        <main>
+            <div class="book">
+                <figure class="im1">
+                    <a href="storie1.html"><img src="assets/america_pageant.jpg" class="im"
+                            alt="america pageant photograph" loading="lazy"></a>
+                    <!-- loading is for when you open the page, the picture will loading auto. alt is for you to descirpt the image-->
+                    <div class="hover-text">america pageant</div>
+                    <!-- you can use this as figcaption as well.-->
+                </figure>
+
+                <figure class="im2">
+                    <a href="#"><img src="assets/Chipwich_guy.jpg" class="im"></a>
+                    <div class="hover-text">Chipwich guy</div>
+                </figure>
+
+                <figure class="im3">
+                    <a href="#"><img src="assets/end_of_life_patient.jpg" class="im"></a>
+                    <div class="hover-text">End Of Life Patient</div>
+                </figure>
+
+                <figure class="im4">
+                    <a href="#"><img src="assets/exhausting_to_me.jpg" class="im"></a>
+                    <div class="hover-text">Exhausting To Me</div>
+                </figure>
+
+                <figure class="im5">
+                    <a href="#"><img src="assets/fake_sport.jpg" class="im"></a>
+                    <div class="hover-text">Fake Sport</div>
+                </figure>
+
+                <figure class="im6">
+                    <a href="#"><img src="assets/gettin_married.jpg" class="im"></a>
+                    <div class="hover-text">Gettin Married</div>
+                </figure>
+
+                <figure class="im7">
+                    <a href="#"><img src="assets/homework.jpg" class="im"></a>
+                    <div class="hover-text">homework</div>
+                </figure>
+
+                <figure class="im8">
+                    <a href="#"><img src="assets/invisibility.jpg" class="im"></a>
+                    <div class="hover-text">invisibility</div>
+                </figure>
+
+                <figure class="im9">
+                    <a href="#"><img src="assets/Mardi-Gras.jpg" class="im"></a>
+                    <div class="hover-text">Mardi Gras</div>
+                </figure>
+
+                <figure class="im10">
+                    <a href="#"><img src="assets/Right_and_wrong.jpg" class="im"></a>
+                    <div class="hover-text">Right And Wrong</div>
+                </figure>
+
+                <figure class="im11">
+                    <a href="#"><img src="assets/sketchbook.jpg" class="im"></a>
+                    <div class="hover-text">Sketchbook</div>
+                </figure>
+
+                <figure class="im12">
+                    <a href="#"><img src="assets/the_algorithm.jpg" class="im"></a>
+                    <div class="hover-text">The Alogrithm</div>
+                </figure>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="social">
+                <a href="#" class="fa-brands fa-facebook"></a>
+                <a href="#" class="fa-brands fa-youtube"></a>
+                <a href="#" class="fa-brands fa-instagram"></a>
+                <a href="#" class="fa-brands fa-pinterest"></a>
+                <a href="#" class="fa-brands fa-snapchat-ghost"></a>
+                <a href="#" class="fa-brands fa-flickr"></a>
+            </div>
+            <div class="credit">
+                <small><em>© weini wang, cart 211, fall 2025, assessment 5, credits: humansofnyarchive.com</em></small>
+            </div>
+
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerButton = document.querySelector('.hamburger-menu button');
+            const closeButton = document.querySelector('.close-menu');
+            const menu1 = document.querySelector('.menu1');
+
+            //gestion de l'ouverture de menu
+            hamburgerButton.addEventListener('click', () => {
+                menu1.classList.add('menu-deployed');
+            });
+
+            //gestion de la fermeture du menu
+            closeButton.addEventListener('click', () => {
+                menu1.classList.remove('menu-deployed');
+            });
+        });
+    </script>
+</body>
+
+</html>
