@@ -272,5 +272,27 @@ therefore it will not work
   color: #999;
 }
 
+/* creating the top black bar, OMG this is finally working! */
+nav {
+        margin: 0 auto;
+        margin-bottom: 50px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 20px;
+        line-height: 30px;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        background: black;       /* <--- THIS makes it the black bar */
+        border-bottom: 4px solid #000000;
+        z-index: 1000;
+        color: white;
+    }
+
+    nav a {
+        color: white;
+    }
 }
 
