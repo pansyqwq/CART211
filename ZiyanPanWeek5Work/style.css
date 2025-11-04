@@ -32,7 +32,7 @@ header {
 
 .wrapper {
     margin: 0px auto 0;
-    width: 60%;
+    width: 80%;
 }
 
 img {
@@ -57,21 +57,6 @@ footer {
     gap: 16px;
 }
 
-/* .im1 {
-    grid-column: 1/4;
-}
-
-.im2 {
-    grid-column: 4/7;
-}
-
-.im3 {
-    grid-column: 7/10;
-}
-
-.im4 {
-    grid-column: 10/13;
-} */
 
 .books figure:has(img.im1) { grid-column: 1 / 4; }
 .books figure:has(img.im2) { grid-column: 4 / 7; }
@@ -97,11 +82,43 @@ therefore it will not work
 */
 
 .books figure {
-    margin: 0;
+    margin:0 ;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden; /* keeps scaled image from spilling out */
 }
+
 
 .books img {
     display: block;
     width: 100%;
     height: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* animate on hover */
+}
+
+.books figure:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+  /* optional: subtle shadow like index page feel */
+  filter: drop-shadow(20px);
+}
+
+/* Overlay label that fades in on hover */
+.hover-text {
+  opacity: 0;                          /* hidden by default */
+  position: absolute;
+  bottom: 30px;
+  left: 10px;
+  background-color: rgba(0,0,0,0.7);
+  padding: 8px 10px;
+  border-radius: 10px;
+  color: #fff;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* so clicks pass through to the link */
+}
+
+.books figure:hover .hover-text {
+  display: block;
+  opacity: 1; /* fade in on hover */
 }
