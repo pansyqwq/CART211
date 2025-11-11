@@ -35,9 +35,11 @@ left: 20%;
   width: 6%;                  /* scales with the character */
   height: auto;
   cursor: pointer;
-  transition-property: scale();    /* enture smooth transitions */
+  /* transition-property: scale();    enture smooth transitions
   transition-duration: 1s;
-  transition-delay: 1s;
+  transition-delay: 0.2s;
+  transition-timing-function: ease-in;     less move at the end */
+  transition: transform 3s ease-in-out 1s;
 }
 
 #glass:hover{
