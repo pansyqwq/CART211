@@ -42,14 +42,23 @@ animation: dance 2s infinite ease-in-out;
 .sun2 {
   display: block;  
    filter: hue-rotate(90deg);
+   position: fixed;
+   z-index: 999;
+   /* put this at the top layer */
 }
 
 .sun3 {
   display: block;  
 filter: hue-rotate(-90deg);
+position: absolute;
+top: 500px;
+right: 30px;
 }
 
 .sun4 {
   display: block;  
    position: fixed;
+   position: sticky;
+   /* position sticky makes the rolling stop at the instructed place */
+   top: 30px;
 }
