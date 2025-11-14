@@ -11,18 +11,18 @@
 
 .Eye_Stack{
     position: relative;
-    width: 50vmin;  /* choose your image size */
-    height: 50vmin; /* same as width */
+    width: 70vmin;  /* choose your image size */
+    height: 70vmin; /* 70% of the screen size*/
 }
 
-.eye {
+.eye-layer{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;   /* make them same size */
     height: 100%;
     object-fit: contain;
-    pointer-events: none; /* optional: so they don’t block each other */
+    pointer-events: none; /*so they don’t block each other */
 }
 
 /* Remove spacing caused by <figure> */
@@ -30,3 +30,8 @@
     margin: 0;
     padding: 0;
 }
+
+/* order: bottom < ball < lid */
+.bottom { z-index: 1; }
+.ball   { z-index: 2; }
+.lid    { z-index: 3; }
