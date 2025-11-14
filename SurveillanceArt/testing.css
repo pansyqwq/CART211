@@ -1,0 +1,32 @@
+/* Wrapper to center only the eye stack */
+.center-wrapper {
+    width: 80%;       /* 10% margin left & right */
+    height: 80vh;     /* space above/below */
+    margin: 0 auto;   /* center horizontally */
+    display: flex;    
+    justify-content: center;   /* center Eye_Stack horizontally */
+    align-items: center;       /* center Eye_Stack vertically */
+    border: 0px solid red;     /* (optional) debugging */
+}
+
+.Eye_Stack{
+    position: relative;
+    width: 50vmin;  /* choose your image size */
+    height: 50vmin; /* same as width */
+}
+
+.eye {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;   /* make them same size */
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none; /* optional: so they don’t block each other */
+}
+
+/* Remove spacing caused by <figure> */
+.Eye_Stack figure {
+    margin: 0;
+    padding: 0;
+}
