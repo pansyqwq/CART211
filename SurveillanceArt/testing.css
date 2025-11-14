@@ -1,3 +1,49 @@
+/* code fo/ the menu bar to the right */
+.side-nav {
+    position: fixed;
+    top: 50%;
+    right: 5vw;              /* distance from right edge */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;             /* space between circles */
+    z-index: 1000;
+}
+
+
+/* Active / current page */
+.nav-dot.active {
+    background-color: #005DCD;   /* blue fill */
+    border-color: #005DCD;       /* blue outline */
+    color: #CBD9D9;              /* light number */
+}
+/* Base style for each circle */
+.nav-dot {
+    width: 2rem;  /* rem = root font size unit, 1 rem= 16px */
+    height: 2rem;
+    border-radius: 50%; /*turn the square into a circle */
+    border: 2px solid black;     /* black outline */
+    background-color: #ebebeb;   /* inner color */
+    color: black;                /* number color */
+    display: flex;
+    align-items: center; /* align-items controls vertical alignment center puts the number vertically in the middle */
+    justify-content: center;
+    text-decoration: none; /*removes underline*/
+    font-family: inherit; /*use the same fornt as the parent element*/
+    font-weight: 400; /* text bold or not*/
+    font-size: 1rem;
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.15s ease;
+/*Background color animation takes 0.2s
+Border color animation takes 0.2s
+Number color animation takes 0.2s
+Any transform (like scale on hover) animates in 0.15s
+ease makes it start fast and end slow*/
+}
+
+
 /* Wrapper to center only the eye stack */
 .center-wrapper {
     width: 80%;       /* 10% margin left & right */
