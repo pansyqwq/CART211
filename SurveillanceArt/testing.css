@@ -11,7 +11,7 @@
 
 .Eye_Stack{
     position: relative;
-    width: 70vmin;  /* choose your image size */
+    width: 70vmin;  
     height: 70vmin; /* 70% of the screen size*/
 }
 
@@ -23,6 +23,8 @@
     height: 100%;
     object-fit: contain;
     pointer-events: none; /*so they don’t block each other */
+    border: 0.2vmin solid black;   /* responsive border */
+    box-sizing: border-box;        /* prevents layout shift */
 }
 
 /* Remove spacing caused by <figure> */
