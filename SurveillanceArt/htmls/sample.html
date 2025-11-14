@@ -38,9 +38,9 @@
         const eye = document.getElementById('eye');
         const eyeball = document.getElementById('eyeball');
 
-        //只有 鼠标在眼睛区域上方移动 时，这个函数才会一直被触发。
+        //只有 鼠标在窗口区域时，这个函数才会一直被触发。
         //function(e)是事件发生时要执行的代码
-        eye.addEventListener('mousemove', function (e) {
+        window.addEventListener('mousemove', function (e) {
             // rect = “眼睛这个方块在窗口里的具体位置和大小”。
             //getBoundingClientRect() = 返回一个矩阵对象
             const rect = eye.getBoundingClientRect();
@@ -66,11 +66,6 @@
 
             // apply movement,move the eyeball using transform
             eyeball.style.transform = `translate(${dx}px, ${dy}px)`;
-        });
-
-        // when mouse leaves, eyeball goes back to center
-        eye.addEventListener('mouseleave', function () {
-            eyeball.style.transform = 'translate(0, 0)';
         });
     </script>
 
