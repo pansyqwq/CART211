@@ -1,0 +1,978 @@
+.row > .column {
+    padding: 0 8px;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Create four equal columns that floats next to eachother */
+  .column {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+
+  .column img{
+    width: 100%;
+    object-fit: cover;
+  }
+  
+
+  
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: lightgray;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color:lightgray;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Hide the slides by default */
+  .mySlides {
+    display: none;
+  }
+  
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* Caption text */
+  .caption-container {
+    text-align: center;
+    background-color: lightgray;
+    padding: 2px 16px;
+    color: white;
+  }
+  
+  img.demo {
+    opacity: 0.6;
+  }
+  
+  .active,
+  .demo:hover {
+    opacity: 1;
+  }
+  
+  img.hover-shadow {
+    transition: 0.3s;
+  }
+  
+  .hover-shadow:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*police par défault du document*/
+body {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 900;
+    font-size: 1em;
+}
+
+/*enlever le souligné pour tout les liens*/
+a,
+a:hover,
+a:visited,
+a:link,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: gray;
+}
+
+.actif {
+    font-weight: bold;
+    color: black;
+}
+
+/*couleur du menu de la navigation principale*/
+nav a {
+    color: gray;
+}
+
+.actif {
+    font-weight: bold;
+    color: black !important;
+}
+/*couleur ausurvol du menu de la navigation principale*/
+nav a:hover {
+    text-decoration: none;
+    color:lightgray;
+}
+
+/* controle sur le logo*/
+.logo-mobile{
+    display: none;
+}
+
+.logo-ordi {
+    display: block;
+}
+
+
+.entete img {
+    width: 50%;
+    object-fit: contain;
+}
+
+/*grille de base du site commence ici*/
+.wrapper {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    width: 100vw;
+    height: 100vh;
+}
+
+header {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 10;
+    margin: 0 auto;
+    padding: 0;
+    width: 90%;
+    position: relative;
+
+}
+
+main {
+    grid-row-start: 2;
+    grid-row-end: 9;
+    grid-column-start: 2;
+    grid-column-end: 9;
+    margin-top: 80px;
+}
+
+footer {
+    grid-row-start: 9;
+    grid-row-end: 10;
+    grid-column-start: 1;
+    grid-column-end: 10;
+    min-height: 200px;
+}
+
+.menu-secondaire-mobile {
+    display: none;
+}
+/*grille de base du site fini ici*/
+
+
+.close-menu {
+    display: none;
+    /* Initialement caché */
+    position: fixed;
+    /* Position fixe par rapport à la fenêtre du navigateur */
+    top: 20px;
+    /* Espace du haut */
+    right: 20px;
+    /* Espace du côté droit */
+    font-size: 2em;
+    /* Taille similaire au menu hamburger */
+    font-weight: bold;
+    /* Gras */
+    color: gray;
+    /* Couleur grise */
+    background: none;
+    /* Pas de fond */
+    border: none;
+    /* Pas de bordure */
+    cursor: pointer;
+    /* Style du curseur en pointeur */
+    z-index: 1010;
+    /* S'assure qu'il est au-dessus du menu déployé */
+}
+
+.menu1 {
+    display: flex;
+    justify-content: space-around; /* Distribue l'espace autour des éléments */
+    align-items: end; /* Alignement vertical au centre */
+    width: 100%; /* Utilise toute la largeur disponible */
+}
+.menu1 a {
+    flex: 1; /* Assure que tous les liens utilisent un espace équivalent */
+
+}
+
+
+.bouton-rond {
+    position: relative; 
+    bottom: -10px; 
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    padding-left: 15px;
+    padding-top: 15px;
+    height: 50px;
+    font-size: 1em; 
+}
+
+.bouton-rond a {
+    color: inherit; /* pour que la couleur reste la même */
+    padding: 0;
+    display: block;
+}
+
+
+
+.bouton-rond:hover {
+    background-color: lightgray;
+    color: gray;
+}
+.bouton-rond a:hover {
+    color: gray;
+    padding: 0;
+    display: block;
+}
+
+.CTA {
+
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    padding-left: 15px;
+    padding-top: 15px;
+    height: 50px;
+    font-size: 1em; 
+}
+
+.CTA a {
+    color: inherit; /* pour que l acouleur reste la même */
+    padding: 0;
+    display: block;
+}
+
+.CTA:hover {
+    background-color: lightgray;
+    color: gray;
+}
+.CTA a:hover {
+    color: gray;
+    padding: 0;
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 100px;
+}
+
+/*styles de l'entete, surtout utile pour la version mobile*/
+.entete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.menus-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+}
+
+.menu1 {
+    display: flex;
+    justify-content: flex-start; 
+    width: 100%; 
+}
+
+.menu-secondaire {
+    display: flex;
+    justify-content: end; 
+    width: 100%; 
+    margin-top: 20px; 
+    font-weight: 400;
+    font-size: small;
+}
+
+.menu1 a, .menu-secondaire a {
+    margin-right: 20px; 
+}
+
+/*style de la grille d'images*/
+/* Configuration du conteneur de la grille */
+.grille_images {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* Définit une grille de 12 colonnes */
+    gap: 10px;
+    /* Espace uniforme autour des bords de la grille */
+    overflow: hidden;
+}
+
+.grille_projets {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* Définit une grille de 12 colonnes */
+    gap: 60px;
+    /* Espacement uniforme entre les éléments de la grille */
+    padding: 10px;
+    /* Espace uniforme autour des bords de la grille */
+    overflow: hidden;
+}
+
+.bas-page {
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
+    color: lightgray;
+    font-size: smaller;
+    font-weight: 100;
+}
+
+.grille_projets p {
+    margin-bottom: 20px;
+    font-weight: 100;
+    text-align: justify;
+}
+
+.grille_projets h2 {
+    margin-bottom: 20px;
+    text-align: right;
+
+}
+
+.grille_projets h3 {
+    margin-bottom: 20px;
+
+}
+
+.grille_projets small {
+    display: block;
+    text-align: right;
+    margin-top: 30px;
+    color: lightgray;
+
+}
+
+/* Styles communs pour les images */
+.im {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Assure que les images couvrent l'espace sans déformation */
+    box-sizing: border-box;
+    /* Pour inclure les marges et les paddings dans la largeur/hauteur */
+    display: block;
+    /* Élimine l'espace supplémentaire sous l'image */
+}
+
+/*pour le texte dans la grille*/
+.im p {
+    padding: 5px; 
+    font-size: 0.8em; 
+    color: #333; 
+    background-color: #f8f8f8;  
+    text-align: justify;  
+}
+
+.im img {
+    width: 100%; 
+    height: auto; 
+    object-fit: cover;
+}
+/* Positionnement individuel des images */
+/* Première ligne : deux carrés et un rectangle */
+.im1 {
+    grid-column: 1 / 4;
+    /* Le premier carré occupe 3 colonnes */
+    grid-row: 1 / 3;
+    /* S'étend sur 2 rangées pour former un carré */
+}
+
+.im2 {
+    grid-column: 4 / 7;
+    /* Le deuxième carré, à côté du premier */
+    grid-row: 1 / 3;
+}
+
+/*ici le texte est absolument au centre avec l'aide de flexbox*/
+.im3 {
+    grid-column: 7 / 13;
+    /* Un grand rectangle occupant le reste de la ligne */
+    grid-row: 1 / 5;
+    padding: 40px;
+    line-height: 30px;
+    text-align: justify;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Deuxième ligne : deux carrés sous les premiers */
+.im4 {
+    grid-column: 1 / 4;
+    /* Continue avec un autre carré sous le .im1 */
+    grid-row: 3 / 5;
+}
+
+.im5 {
+    grid-column: 4 / 7;
+    /* Carré sous le .im2 */
+    grid-row: 3 / 5;
+}
+
+/* Troisième ligne : commence par un rectangle, suivi de deux carrés */
+.im6 {
+    grid-column: 1 / 7;
+    /* Grand rectangle occupant la moitié gauche */
+    grid-row: 5 / 9;
+    background-color: lightgray;
+}
+
+.im7 {
+    grid-column: 7 / 10;
+    /* Carré à droite du rectangle */
+    grid-row: 5 / 7;
+}
+
+.im8 {
+    grid-column: 10 / 13;
+    /* Un autre carré à côté du .im7 */
+    grid-row: 5 / 7;
+}
+
+/* Quatrième ligne : deux carrés sous ceux de la troisième ligne */
+.im9 {
+    grid-column: 7 / 10;
+    /* Carré sous le .im7 */
+    grid-row: 7 / 9;
+}
+
+.im10 {
+    grid-column: 10 / 13;
+    /* Carré sous le .im8 */
+    grid-row: 7 / 9;
+}
+
+/* Remplissage de la dernière ligne avec quatre carrés */
+.im11,
+.im13 {
+    grid-column: 1 / 4;
+    /* .im11 et .im13 sont placés à gauche, .im13 est ajouté */
+    grid-row: 9 / 11;
+    /* Ils s'étendent tous les deux sur 2 rangées */
+}
+
+.im12,
+.im14 {
+    grid-column: 4 / 7;
+    /* .im12 et .im14 sont placés à droite */
+    grid-row: 9 / 11;
+}
+
+.im13 {
+    grid-column: 7 / 10;
+    /* Positionnement corrigé pour .im13 */
+}
+
+.im14 {
+    grid-column: 10 / 13;
+    /* Positionnement corrigé pour .im14 */
+}
+
+
+.sociaux a {
+    color: gray;
+    font-size: 30px;
+}
+
+.sociaux a:hover {
+    color: lightgray;
+    font-size: 30px;
+}
+
+.sociaux p {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.sociaux {
+    display: flex;
+    flex-direction: column;
+    /* Organise les éléments verticalement */
+    align-items: center;
+    /* Centre les éléments verticalement */
+    text-align: center;
+    /* Centre le texte pour les sous-éléments */
+    padding: 20px 0;
+}
+
+.icons-wrapper {
+    display: flex;
+    justify-content: center;
+    /* Centre les icônes horizontalement */
+    flex-wrap: wrap;
+    /* Permet aux icônes de passer à la ligne si nécessaire */
+    gap: 10px;
+    /* Espacement entre les icônes */
+    width: 100%;
+    /* Assure que le wrapper prend toute la largeur */
+}
+
+.fa {
+    font-size: 2em;
+    /* Ajuste la taille des icônes */
+    padding: 8px;
+    /* Ajuste l'espacement autour des icônes */
+    color: gray;
+    /* Couleur des icônes */
+}
+
+.fa:hover {
+    color: lightgray;
+    /* Couleur des icônes au survol */
+}
+
+/* Styles spécifiques pour les crédits */
+.credits {
+    margin-top: 10px;
+    /* Ajoute un espace entre les icônes et les crédits */
+    font-size: 1em;
+    /* Ajuste la taille de la police pour les crédits */
+    width: 100%;
+    /* Assure que les crédits prennent toute la largeur et restent centrés */
+}
+
+/* Styles pour le bouton menu hamburger */
+.hamburger-menu {
+    display: none;
+    /* Caché par défaut, sera affiché sur mobile */
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger-menu button {
+    background: none;
+    border: none;
+    font-size: 2em;
+    /* Taille de l'icône du menu hamburger */
+    color: gray;
+}
+
+.hamburger-menu button .fa-bars {
+    cursor: pointer;
+}
+
+.credits {
+    color: lightgrey;
+}
+
+/*pour la page projets*/
+.imP1 {
+    grid-column: span 6; grid-row: span 3;
+}
+.txtP1 {
+    grid-column: span 6; grid-row: span 3;
+}
+
+/* Media Query pour les écrans mobiles */
+
+@media (max-width: 1200px) {
+
+    body {
+        padding: 0px;
+        margin: 0;
+        /* Marge autour du contenu */
+    }
+    .entete {
+        flex-direction: row; /* Keeps a row layout even in mobile views */
+        margin: 20px;
+
+    }
+
+    .logo-mobile{
+        display: block;
+        
+    }
+
+    .logo-ordi {
+        display: none;
+    }
+
+    nav .fa {
+        padding: 0;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        /* Alignement des éléments à la base */
+
+    }
+
+
+    .entete img {
+        width: auto;
+        height: 30px;
+        /* Hauteur fixe pour le logo pour contrôler sa taille */
+    }
+
+    .hamburger-menu {
+        display: flex;
+        /* Assure que le menu hamburger est visible et aligné */
+        align-items: center;
+        /* Centre verticalement le bouton dans l'en-tête */
+    }
+
+    main {
+        padding-top: 50px;
+        /* Espace supérieur pour s'assurer que le contenu principal ne soit pas caché par l'en-tête */
+        padding-bottom: 50px;
+        /* Augmente l'espace en bas avant le pied de page */
+        grid-column-start: 1;
+        grid-column-end: 10;
+        margin-top: 10px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    h1 {
+        margin-top: 80px;
+        /* Augmente l'espace au-dessus du h1 pour plus de clarté */
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 1.8em;
+    }
+
+    .menu1 a,
+    .menu1 a:hover {
+        text-decoration: none;
+        /* Enlève le soulignement pour l'état normal et au survol */
+        color: gray;
+        /* Couleur des liens inchangée */
+        background-color: transparent;
+        /* Aucun changement de fond au survol */
+    }
+
+    .menu1 {
+        display: none;
+        /* S'assure que le menu est au-dessus des autres éléments */
+    }
+
+    .menu1 a {
+        padding: 0px;
+        /* Augmente le padding pour espacer les éléments */
+    }
+
+    .close-menu {
+        display: block;
+        /* S'assure que le bouton est visible */
+        position: absolute;
+        /* Position absolue pour placer précisément le bouton */
+        top: 20px;
+        /* Espace du haut */
+        right: 20px;
+        /* Espace du côté droit */
+        font-size: 2em;
+        /* Taille de l'icône */
+        color: gray;
+        /* Couleur de l'icône */
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+    .menu-secondaire {
+        display: none; /* Cacher la navigation secondaire en mode mobile */
+    }
+
+    /* Affiche le menu en plein écran en mobile */
+    .menu-deployed {
+        display: flex;
+        /* Utilise flexbox pour le layout */
+        flex-direction: column;
+        /* Empile les éléments verticalement */
+        justify-content: center;
+        /* Centre les éléments verticalement */
+        align-items: center;
+        /* Centre les éléments horizontalement */
+        width: 100%;
+        /* Prend toute la largeur */
+        height: 100vh;
+        /* Prend toute la hauteur de la vue */
+        position: fixed;
+        /* Position fixe pour couvrir tout l'écran */
+        top: 0;
+        /* À partir du haut de la page */
+        left: 0;
+        /* À partir du côté gauche de la page */
+        background-color: white;
+        /* Fond blanc pour le menu */
+        z-index: 1000;
+        /* S'assure que le menu est au-dessus de tout le contenu */
+        padding: 120px;
+    }
+
+
+    .menu-deployed a {
+        padding: 0px; 
+        margin: 0;  
+    }
+    .menu1 .actif {
+        color: black;
+        /* Si vous voulez que .actif reste noir aussi en mobile */
+    }
+    .bouton-rond {
+        position: static; 
+        bottom: 0px; 
+        background-color: white;
+        border-radius: 0px;
+        border: 0px solid #ccc;
+        padding-left: 0px;
+        padding-top:0px;
+        height: 0px;
+        font-size: 1em; 
+    }
+    
+    .bouton-rond a {
+        color: gray;
+        padding: 0;
+        display: block;
+    }
+    
+
+    .grille_projets {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* Deux colonnes */
+        gap: 10px;
+        /* Espacement entre les images */
+    }
+
+    .grille_projets h2 {
+        margin-top: 30px;
+        text-align: right;
+    }
+
+    .grille_projets small {
+        display: block;
+        margin-top: 40px;
+        text-align: right;
+    }
+
+    .grille_images img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    .menu-secondaire-mobile {
+        display: flex; 
+        flex-direction: row; 
+        justify-content: center; 
+        align-items: center; 
+        width: 100%;  
+        flex-wrap: wrap;  
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .menu-secondaire-mobile-p-une {
+        display: flex; 
+        flex-direction: row; 
+        justify-content: center; 
+        align-items: center; 
+        width: 100%;  
+        flex-wrap: wrap;  
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .menu-secondaire-mobile a {
+        padding: 5px 10px;  
+        white-space: nowrap;  
+        margin: 0 5px;  
+        color: lightgray;
+        font-weight: 100;
+    }
+    .sociaux p{
+        margin-bottom: 0px;
+    }
+    .im1 {
+        grid-column: 1 / 7;
+        grid-row: 1 / 2;
+    }
+    
+    .im2 {
+        grid-column: 7 / 13;
+        grid-row: 1 / 2;
+    }
+    
+    /*ici le texte est absolument au centre avec l'aide de flexbox*/
+    .im3 {
+        grid-column: 1 / 13;
+        grid-row: 2 / 4;
+        padding: 40px;
+        line-height: 30px;
+        text-align: justify;
+        background-color: lightgray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Deuxième ligne : deux carrés sous les premiers */
+    .im4 {
+        grid-column: 1 / 7;
+        grid-row: 4 / 6;
+    }
+    
+    .im5 {
+        grid-column: 7 / 13;
+        grid-row: 4 / 6;
+    }
+    
+    /* Troisième ligne : commence par un rectangle, suivi de deux carrés */
+    .im6 {
+        grid-column: 1 / 13;
+        background-color: lightgray;
+        grid-row: 6 / 8;
+        height: 200px;
+    }
+    
+    .im7 {
+        grid-column: 1 / 7;
+        grid-row: 8 / 9;
+    }
+    
+    .im8 {
+        grid-column: 7 / 13;
+        grid-row: 8 / 9;
+    }
+    .im9 {
+        grid-column: 1 / 7;
+        grid-row: 9 / 10;
+    }
+    
+    .im10 {
+        grid-column: 7 / 13;
+        grid-row: 9 / 10;
+    }
+    
+    .im11 {
+        grid-column: 1 / 7;
+        grid-row: 10 / 11;
+    }
+    .im12 {
+        grid-column: 7 / 13;
+        grid-row: 10 / 11;
+    }
+    
+    .im13 {
+        grid-column: 1 / 7;
+        grid-row: 11 / 12;
+    }
+    .im14 {
+        grid-column: 7 / 13;
+        grid-row: 11 / 12;
+    }
+  
+    
+    
+  
+}
+
+/*
+iiiiiii  sss   rrrr    aaa  eee l
+   ii   s    r   r  a   a e     l    
+   ii    sss  rrrr  aaaaa eeee  l    
+   ii       s r  r  a   a e     l    
+iiiiiii  sss   r   r a   a  e   lll  
+
+ddddd  u  u pppp  u   u iii sss  
+d   d  u  u p   p u   u  i  s     
+d   d  u  u pppp  u   u  i   sss  
+d   d  u  u p     u   u  i      s 
+ddddd   uuu p      uuu  iii sss   
+
+Codé par Israël Dupuis en 2025 pour le plus grand bien de tous.
+*/

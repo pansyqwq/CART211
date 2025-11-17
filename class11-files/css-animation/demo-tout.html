@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Démo complète des transform</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .demo {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: all 0.6s ease;
+      border-radius: 10px;
+    }
+
+    .demo:hover {
+      cursor: pointer;
+    }
+
+    .translate:hover {
+      transform: translate(50px, 20px);
+    }
+
+    .scale:hover {
+      transform: scale(1.2);
+    }
+
+    .rotate:hover {
+      transform: rotate(30deg);
+    }
+
+    .skew:hover {
+      transform: skew(15deg, 5deg);
+    }
+
+    .matrix:hover {
+      transform: matrix(1, 0.3, 0.3, 1, 20, 10);
+    }
+
+    .rotate3d:hover {
+      transform: rotate3d(1, 1, 0, 45deg);
+    }
+
+    .translate3d:hover {
+      transform: translate3d(20px, 10px, 50px);
+    }
+
+    .scale3d:hover {
+      transform: scale3d(1.2, 1.1, 1.3);
+    }
+
+    .perspective-container {
+      perspective: 800px;
+    }
+
+    .perspective-container .perspective:hover {
+      transform: rotateY(30deg) translateZ(60px);
+      transform-style: preserve-3d;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo translate">translate</div>
+  <div class="demo scale">scale</div>
+  <div class="demo rotate">rotate</div>
+  <div class="demo skew">skew</div>
+  <div class="demo matrix">matrix</div>
+  <div class="demo rotate3d">rotate3d</div>
+  <div class="demo translate3d">translate3d</div>
+  <div class="demo scale3d">scale3d</div>
+  <div class="demo perspective-container">
+    <div class="demo perspective">perspective</div>
+  </div>
+</body>
+</html>

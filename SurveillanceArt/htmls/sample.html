@@ -24,6 +24,21 @@
     </nav>
     <main>
         <div class="center-wrapper">
+              <!-- I have lines -->
+            <svg class="link-lines" id="lines">
+                <line id="line-subtitle" stroke="#005DCD" stroke-width="2" />
+                <line id="line-paragraph" stroke="#005DCD" stroke-width="2" />
+            </svg>
+             <!-- I have subtitles -->
+            <div class="label subtitle" id="subtitle">
+                I'm subtitles
+            </div>
+
+            <!-- I have paragraph -->
+            <div class="label paragraph" id="paragraph">
+                I'm paragraphs, paragraphs paragraph and data data data
+            </div>
+
             <div class="Eye_Stack" id="eye">
                 <figure>
                     <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
@@ -79,6 +94,40 @@
             // apply movement,move the eyeball using transform
             eyeball.style.transform = `translate(${dx}px, ${dy}px)`;
         });
+        function updateLineBetween(lineId, fromId, toId) {
+            const container = document.querySelector('.center-wrapper');
+            if (!container) return;
+            const containerRect = container.getBoundingClientRect(); // get data from center-wrapper
+
+            const fromEl = document.getElementById(fromId);
+            const toEl = document.getElementById(toId);
+            const line = document.getElementById(lineId);
+            if (!fromEl || !toEl || !line) return;
+
+            const r1 = fromEl.getBoundingClientRect(); //r1 contains the exact onscreen rectangle of the eye.
+            const r2 = toEl.getBoundingClientRect(); //r2 contains the onscreen rectangle of the subtitle text.
+
+            const x1 = r1.left + r1.width / 2 - containerRect.left; //r1.left + r1.width / 2 → x coordinate of the center of the eye
+            const y1 = r1.top + r1.height / 2 - containerRect.top; //r1.top + r1.height / 2 → y coordinate of the center of the eye
+            //convert from page coordinates → local layout coordinates
+
+            const x2 = r2.left + r2.width / 2 - containerRect.left;
+            const y2 = r2.top + r2.height / 2 - containerRect.top;
+
+            line.setAttribute('x1', x1);
+            line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2);
+            line.setAttribute('y2', y2);
+        }
+
+
+        function updateAllLines() {
+            updateLineBetween('line-subtitle', 'eye', 'subtitle');
+            updateLineBetween('line-paragraph', 'eye', 'paragraph');
+        }
+
+        window.addEventListener('load', updateAllLines);// when the page opens, load the lines
+        window.addEventListener('resize', updateAllLines);
     </script>
 
 </body>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <!--jeux de charactère latin-->
+    <meta charset="utf-8">
+
+    <!--titre du site, important pour google-->
+    <title>porfolio de François Orange</title>
+
+    <!--description pour google-->
+    <meta name="description" content="votre description">
+    <meta name="robots" content="index, follow">
+
+    <!--pour que le site soit ok dans les mobiles aussi-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!--compatibilité avec edge-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!--Nom de l'auteur-->
+    <meta name="author" content="Ton Nom" />
+
+    <!--L'url de ce site et l'indication à google de l'indexer-->
+    <link rel="canonical" href="http://suivezcesite.com/" />
+
+    <!--Liens vers ma feuille de stylet-->
+    <link rel="stylesheet" href="style.css">
+
+    <!--mots clé pour google-->
+    <meta name="keywords" content="vos, keywords, ...">
+
+    <!--Liens vers la google font-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,400;0,900;1,100;1,900&display=swap"
+        rel="stylesheet">
+
+    <!--Liens vers la librairie d'icone sociaux-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="entete">
+                <div class="logo-mobile"><a href="index.html"><img src="images/logo.svg" alt="Logo"></a></div>
+                
+                <!-- Single container for both menus -->
+                <div class="menus-container">
+                    <nav class="menu1">
+                    <!-- Bouton fermer -->
+                    <button class="close-menu">&times;</button>
+                    <div class="logo-ordi"><a href="grosse-grille.html"><img src="images/logo.svg" alt="Logo"></a></div>
+                    <a href="#" class="actif">Lorem</a>
+                    <a href="#">Dolor</a>
+                    <a href="#">Sit</a>
+                    <a href="#">Amen</a>
+                    <a href="index.html">Adipiscing</a>
+                    <div class="bouton-rond"><a href="#">Quisque aven dunis</a></div>
+                    </nav>
+        
+                    <!-- Secondary navigation, to be aligned to the right -->
+                    <nav class="menu-secondaire">
+                        <a href="#">Proin turpis</a>
+                        <a href="#">Suspendisse</a>
+                        <a href="#">Ullamcorper</a>
+                        <a href="#">Phasellus</a>
+                    </nav>
+                </div>
+        
+                <!-- Mobile hamburger menu button -->
+                <nav class="hamburger-menu">
+                    <button>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                </nav>
+            </div>
+        </header>
+        <main>
+
+            <h1>Sit amet consectetur adipiscing</h1>
+            <div class="grille_projets">
+
+                <figure class="imP1">
+                    <img src="images/un.jpg" class="im">
+                </figure>
+                <div class="txtP1">
+                    <h2>Tincidunt </h2>
+                    <h3>Lorem</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam voluptatum facilis repellat veniam
+                        ipsam deleniti fugit dolores, velit minima perspiciatis mollitia omnis? Labore velit magni
+                        recusandae! Corrupti pariatur asperiores cupiditate. </p>
+                    <h3>Lorem</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam voluptatum facilis repellat veniam
+                        ipsam deleniti fugit dolores, velit minima perspiciatis mollitia omnis? Labore velit magni
+                        recusandae! Corrupti pariatur asperiores cupiditate. </p>
+                    <h3>Lorem</h3>
+                   <small>Lorem Ipsum Dolor
+                        dolor</small>
+                </div>
+
+
+            </div>
+
+        </main>
+
+        <footer class="pied">
+
+            <div class="sociaux">
+                <!-- Icônes des médias sociaux -->
+                <div class="icons-wrapper">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-pinterest"></a>
+                    <a href="#" class="fa fa-snapchat-ghost"></a>
+                    <a href="#" class="fa fa-flickr"></a>
+                </div>
+
+                <!-- Crédits -->
+                <div class="credits">
+                    <p>© 2024 Votre Nom</p>
+                </div>
+            </div>
+
+            <nav class="menu-secondaire-mobile">
+                
+                <a href="#about-us">Proin turpis</a>
+                <a href="#blog">Suspendisse</a>
+                <a href="#press">Ullamcorper</a>
+                <a href="#cart">Phasellus</a>
+            </nav>
+    </footer>
+
+    </div>
+    <!-- script pour le menu hamburger -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerButton = document.querySelector('.hamburger-menu button');
+            const closeButton = document.querySelector('.close-menu');
+            const menu1 = document.querySelector('.menu1');
+
+            // Gestion de l'ouverture du menu
+            hamburgerButton.addEventListener('click', () => {
+                menu1.classList.add('menu-deployed');
+            });
+
+            // Gestion de la fermeture du menu
+            closeButton.addEventListener('click', () => {
+                menu1.classList.remove('menu-deployed');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

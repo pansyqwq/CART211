@@ -1,0 +1,34 @@
+Exporter les assets de photoshop (.png .jpg .svg .gif)
+https://www.youtube.com/watch?v=-e4Dzdb3VfU
+
+survol complet des formats de fichiers pour l'écrans
+https://youtu.be/e-8adfI9piw
+
+Les différentes positions en CSS (fixed, static, sticky, relatif)
+https://www.youtube.com/watch?v=CuG_pyrc2KA
+
+Les images et couleurs d'arrière-plan HTML CSS
+https://www.youtube.com/watch?v=gKyV4RY1QNY
+
+
+Migrer de brackets vers visual studio code
+https://youtu.be/Cesg_Pvw5cs
+
+Site du w3 school, tout le html css est la!
+https://www.w3schools.com/tags/default.asp
+
+Tester un site à une autre résolution sur un MacBook
+https://youtu.be/LzcTONUkdBg
+
+Hero image avec menu et texte superposé (blurb) part.1
+https://youtu.be/m4knTG0VcKc
+
+Hero image avec menu et texte superposé (blurb) part.2
+https://youtu.be/X0eh6p7CJ0Y
+
+Hero image avec menu et texte superposé (blurb) part.3
+https://youtu.be/1_P57KLHffY
+
+
+Processeur d'images de photoshop
+https://youtu.be/bhjtErnFfCI

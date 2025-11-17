@@ -54,6 +54,7 @@ ease makes it start fast and end slow*/
 
 /* Wrapper to center only the eye stack */
 .center-wrapper {
+    position: relative;
     width: 80%;       /* 10% margin left & right */
     height: 80vh;     /* space above/below */
     margin: 0 auto;   /* center horizontally */
@@ -91,3 +92,36 @@ ease makes it start fast and end slow*/
 .bottom { z-index: 1; }
 .ball   { z-index: 2; }
 .lid    { z-index: 3; }
+
+
+/* labels (subtitle / paragraph) */
+.label {
+    position: absolute;
+    max-width: 26ch;
+    color: #005DCD;
+    font-family: inherit;
+    z-index: 80;
+}
+
+/* place the subtitle */
+.subtitle {
+    top: 15%;
+    left: 12%;
+}
+
+/* place the subtitle */
+.paragraph {
+    bottom: 12%;
+    left: 15%;
+    color: #005DCD;
+}
+
+/* SVG that covers the whole layout for drawing lines */
+.link-lines {
+    position: absolute;
+    inset: 0;     /* top:0; right:0; bottom:0; left:0 */
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* so clicks go through to links etc. */
+    z-index: 99; 
+}

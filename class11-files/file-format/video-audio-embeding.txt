@@ -1,0 +1,190 @@
+
+
+Code to insert video object:
+
+                  <video class="im" controls autoplay muted loop playsinline>
+  <source src="hd0527.mp4" type="video/mp4" width="100%">
+  Your browser does not support the HTML5 video element.
+</video>
+
+
+
+
+Playback control
+autoplay – starts the video automatically when loaded.
+muted – disables audio; required for autoplay in modern browsers.
+loop – restarts the video automatically when it ends.
+controls – displays the browser’s default controls.
+playsinline – plays the video inside the element instead of forcing fullscreen on mobile/iOS.
+preload – hints how much data to load before playback. Values:
+none
+metadata
+auto
+Source and format
+src – direct source URL (used only if not using <source> tags).
+type – MIME type in <source> (e.g., video/mp4).
+Display and layout
+poster – an image displayed before the video loads or if autoplay is disabled.
+width – sets a fixed pixel width.
+height – sets a fixed pixel height.
+crossorigin – enables CORS (anonymous or use-credentials).
+Track and captions
+<track> element attributes:
+kind – captions, subtitles, descriptions, chapters, metadata
+src – URL to the caption file (e.g., VTT).
+srclang – language of the track.
+label – visible label in UI.
+default – marks a track as default.
+Playback programmatic restrictions
+disablepictureinpicture – prevents PiP mode.
+disableremoteplayback – prevents casting to external devices.
+
+
+
+To do a video background, the video have to be remove from the page (no 2 instance of it)
+
+Put it right at the top of HTML code:
+    <video class="video-bg" autoplay muted loop playsinline>
+    <source src="hd0527.mp4" type="video/mp4">
+</video>
+
+Add this css:
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;   /* fills the screen */
+    z-index: -1;         /* behind all content */
+    pointer-events: none; /* prevents click blocking */
+}
+
+Main recommended container formats
+These are the three formats defined by the HTML5 specification:
+MP4
+Container: .mp4
+Video codec: H.264 / AVC (widely supported), H.265/HEVC (limited), AV1 (emerging)
+Audio codec: AAC or MP3
+Highest cross-browser compatibility.
+WebM
+Container: .webm
+Video codec: VP8, VP9, AV1
+Audio codec: Vorbis or Opus
+Open format, well supported in Chrome/Firefox.
+Ogg / OGV
+Container: .ogv
+Video codec: Theora
+Audio codec: Vorbis
+Older open format, now rare.
+Other containers sometimes supported (not universal)
+These are not part of the official HTML5 spec, but some browsers accept them depending on codecs installed:
+MKV (.mkv)
+Supported by Chrome/Edge (limited)
+Not supported in Safari
+MOV (.mov)
+Possible in Safari (QuickTime-based)
+Not recommended; inconsistent in Chrome/Firefox
+AVI (.avi)
+Very inconsistent
+Not recommended for web use
+M4V (.m4v)
+Same as MP4, often works if encoded with H.264
+3GP (.3gp)
+Old mobile format, partially supported
+Formats browsers do NOT support in <video>
+These do not work directly in HTML5:
+WMV (.wmv)
+FLV (.flv)
+SWF (.swf)
+MPEG-2 TS (.ts)
+VOB (.vob)
+They require conversion before embedding (with adobe media encoder for instance).
+
+
+
+
+Code to insert YouTube video (may be blocked from embed):
+HTML
+<figure class="im1">
+    <div class="video-wrapper">
+        <iframe
+            src="https://www.youtube.com/embed/06_smDQ5BfI?si=vy_5FxIh0tiAkSml&autoplay=1&mute=1&loop=1&playlist=06_smDQ5BfI"
+            title="YouTube video player"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+        ></iframe>
+    </div>
+</figure>
+
+CSS
+/* Wrapper behaves like .im items */
+.video-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Force iframe to fill and crop like an image */
+.video-wrapper iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;      /* slight oversize to eliminate black bars */
+    height: 120%;
+    transform: translate(-50%, -50%);
+    border: none;
+}
+
+Playback behavior
+autoplay=0|1
+controls=0|1|2
+disablekb=0|1
+loop=0|1
+playlist=VIDEO_ID (required when loop=1)
+playsinline=0|1
+start=SECONDS
+end=SECONDS
+mute=0|1
+rel=0|1
+vq=value (e.g., hd720, medium, etc.)
+cc_load_policy=1 (force captions on)
+cc_lang_pref=fr|en|…
+Player appearance
+modestbranding=1 (hides YouTube logo)
+color=red|white
+iv_load_policy=1|3 (annotations / cards)
+Controls and UI
+fs=0|1 (fullscreen button)
+showinfo (deprecated, no longer works)
+controls=0|1|2
+disablekb=1 (disable keyboard controls)
+enablejsapi=1 (enable JS API)
+Security / privacy
+origin=https://yourwebsite.com (required with JS API)
+widget_referrer=https://yourwebsite.com
+enablecastapi=1
+noCookie mode: use domain youtube-nocookie.com
+Performance
+autohide=0|1|2 (legacy)
+playsinline=1 (avoid fullscreen on iOS)
+mute=1 (allows autoplay)
+controls=0 (no controls → stricter autoplay rules apply)
+YouTube Shorts / Mobile
+si=value (session token, auto-generated)
+These are not documented and can cause errors; remove them.
+Advertising / cookies (automatically added by YouTube)
+ads_params=...
+geo=...
+client=...
+
+
+
+
+Code to insert audio object:
+
+                  <audio id="my audio" controls autoplay muted loop>
+  <source src="sound.mp3" type="audioæ/mpeg">
+  Your browser does not support the HTML5 video element.
+</audio>
