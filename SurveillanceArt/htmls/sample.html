@@ -94,7 +94,7 @@
             // apply movement,move the eyeball using transform
             eyeball.style.transform = `translate(${dx}px, ${dy}px)`;
         });
-        function updateLineBetween(lineId, fromId, toId) {
+        function updateLineBetween(lineId, fromId, toId, startOffsetX = 0, startOffsetY = 0) {
             const container = document.querySelector('.center-wrapper');
             if (!container) return;
             const containerRect = container.getBoundingClientRect(); // get data from center-wrapper
@@ -107,10 +107,12 @@
             const r1 = fromEl.getBoundingClientRect(); //r1 contains the exact onscreen rectangle of the eye.
             const r2 = toEl.getBoundingClientRect(); //r2 contains the onscreen rectangle of the subtitle text.
 
-            const x1 = r1.left + r1.width / 2 - containerRect.left; //r1.left + r1.width / 2 → x coordinate of the center of the eye
-            const y1 = r1.top + r1.height / 2 - containerRect.top; //r1.top + r1.height / 2 → y coordinate of the center of the eye
+            //center of the eye + offset
+            const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX; //r1.left + r1.width / 2 → x coordinate of the center of the eye
+            const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY; //r1.top + r1.height / 2 → y coordinate of the center of the eye
             //convert from page coordinates → local layout coordinates
 
+             // x2,y2: center of the text box (no offset)
             const x2 = r2.left + r2.width / 2 - containerRect.left;
             const y2 = r2.top + r2.height / 2 - containerRect.top;
 
@@ -122,8 +124,8 @@
 
 
         function updateAllLines() {
-            updateLineBetween('line-subtitle', 'eye', 'subtitle');
-            updateLineBetween('line-paragraph', 'eye', 'paragraph');
+            updateLineBetween('line-subtitle', 'eye', 'subtitle', -20, -80);
+            updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
         }
 
         window.addEventListener('load', updateAllLines);// when the page opens, load the lines
