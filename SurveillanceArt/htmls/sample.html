@@ -24,12 +24,13 @@
     </nav>
     <main>
         <div class="center-wrapper">
-              <!-- I have lines -->
+            <!-- I have lines -->
             <svg class="link-lines" id="lines">
                 <line id="line-subtitle" stroke="#005DCD" stroke-width="2" />
                 <line id="line-paragraph" stroke="#005DCD" stroke-width="2" />
+                <line id="line-MouseData" stroke="#005DCD" stroke-width="2" />
             </svg>
-             <!-- I have subtitles -->
+            <!-- I have subtitles -->
             <div class="label subtitle" id="subtitle">
                 I'm subtitles
             </div>
@@ -37,6 +38,11 @@
             <!-- I have paragraph -->
             <div class="label paragraph" id="paragraph">
                 I'm paragraphs, paragraphs paragraph and data data data
+            </div>
+
+            <!-- I have mouse data -->
+            <div class="label MouseData" id="MouseData">
+
             </div>
 
             <div class="Eye_Stack" id="eye">
@@ -64,6 +70,8 @@
         // 去 HTML 里找 id="eye" 的元素
         const eye = document.getElementById('eye');
         const eyeball = document.getElementById('eyeball');
+        const mouseDataBox = document.getElementById('MouseData');
+
 
         //只有 鼠标在窗口区域时，这个函数才会一直被触发。
         //function(e)是事件发生时要执行的代码
@@ -93,6 +101,11 @@
 
             // apply movement,move the eyeball using transform
             eyeball.style.transform = `translate(${dx}px, ${dy}px)`;
+
+            // Show mouse coordinates
+            if (mouseDataBox) {
+                mouseDataBox.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+            }
         });
         function updateLineBetween(lineId, fromId, toId, startOffsetX = 0, startOffsetY = 0) {
             const container = document.querySelector('.center-wrapper');
@@ -100,6 +113,9 @@
             const containerRect = container.getBoundingClientRect(); // get data from center-wrapper
 
             const fromEl = document.getElementById(fromId);
+            // Look inside the HTML document
+            // Find the element with the ID equal to the value in fromId
+            // Save it into the variable fromEl
             const toEl = document.getElementById(toId);
             const line = document.getElementById(lineId);
             if (!fromEl || !toEl || !line) return;
@@ -112,7 +128,7 @@
             const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY; //r1.top + r1.height / 2 → y coordinate of the center of the eye
             //convert from page coordinates → local layout coordinates
 
-             // x2,y2: center of the text box (no offset)
+            // x2,y2: center of the text box (no offset)
             const x2 = r2.left + r2.width / 2 - containerRect.left;
             const y2 = r2.top + r2.height / 2 - containerRect.top;
 
@@ -126,6 +142,7 @@
         function updateAllLines() {
             updateLineBetween('line-subtitle', 'eye', 'subtitle', -20, -80);
             updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
+            updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
         }
 
         window.addEventListener('load', updateAllLines);// when the page opens, load the lines

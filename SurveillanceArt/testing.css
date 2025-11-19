@@ -116,6 +116,13 @@ ease makes it start fast and end slow*/
     color: #005DCD;
 }
 
+.MouseData {
+    top: 20%;
+    right: 15%;
+    color: #005DCD;
+     border: 1px solid red;
+}
+
 /* SVG that covers the whole layout for drawing lines */
 .link-lines {
     position: absolute;
