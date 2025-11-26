@@ -119,8 +119,8 @@ ease makes it start fast and end slow*/
 .MouseData {
     top: 20%;
     right: 15%;
-    color: #005DCD;
-     border: 1px solid red;
+    color: #005dcd;
+     border: 1px solid #005DCD;
 }
 
 /* SVG that covers the whole layout for drawing lines */
