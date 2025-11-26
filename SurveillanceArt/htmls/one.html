@@ -24,17 +24,86 @@
     </nav>
     <main>
         <div class="center-wrapper">
-            <div class="Eye_Stack" id="eye">
-                <figure>
-                    <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
-                    <a href="#"><img src="../assets/images/EyeStable.png" alt="EyeStable" class="eye-layer stable"></a>
-                    <div class="hover-text">StableEye</div>
-                </figure>
+            <!-- 新增：蒙版盒子 -->
+            <div class="mask-box" id="maskBox">
+                <div class="Eye_Stack" id="eyeStack">
+
+                </div>
             </div>
         </div>
     </main>
 
+
     <script>
+        window.addEventListener("load", () => {
+            const NUM_EYES = 20; // how many eyes we want
+            const maskBox = document.getElementById("maskBox");
+            const eyeStack = document.getElementById("eyeStack");
+            const eyes = [];
+
+            // 1. Dynamically create 20 img elements
+            for (let i = 0; i < NUM_EYES; i++) {
+                const img = document.createElement("img");
+                img.src = "../assets/images/EyeStable.png";
+                img.alt = "EyeStable";
+                img.classList.add("eye-piece");
+                eyeStack.appendChild(img);
+                eyes.push(img);
+            }
+
+            // 2. Randomize the size and position of ONE eye
+            function randomizeOneEye(eye) {
+                const maskRect = maskBox.getBoundingClientRect();
+
+                // Random scale between 30% and 80%
+                const scale = 0.3 + Math.random() * 0.5;
+                eye.style.width = (scale * 100) + "%";
+                eye.style.height = "auto";
+
+                // Temporarily reset position so the browser can compute the real size
+                eye.style.left = "0px";
+                eye.style.top = "0px";
+
+                const eyeRect = eye.getBoundingClientRect();
+
+                // Allow the eye to go 20% outside of the mask on each side
+                const overRatio = 0.2; // 20%
+
+                // Horizontal range
+                const baseMinLeft = 0;
+                const baseMaxLeft = maskRect.width - eyeRect.width;
+                const extraX = eyeRect.width * overRatio;
+
+                const minLeft = baseMinLeft - extraX;
+                const maxLeft = baseMaxLeft + extraX;
+
+                // Vertical range
+                const baseMinTop = 0;
+                const baseMaxTop = maskRect.height - eyeRect.height;
+                const extraY = eyeRect.height * overRatio;
+
+                const minTop = baseMinTop - extraY;
+                const maxTop = baseMaxTop + extraY;
+
+                // Pick a random position inside the extended range
+                const randLeft = minLeft + Math.random() * (maxLeft - minLeft);
+                const randTop = minTop + Math.random() * (maxTop - minTop);
+
+                eye.style.left = randLeft + "px";
+                eye.style.top = randTop + "px";
+            }
+
+            // 3. Randomize all eyes
+            function randomizeAllEyes() {
+                eyes.forEach(randomizeOneEye);
+            }
+
+            // Randomize once on page load
+            randomizeAllEyes();
+
+            // Randomize again every time the mask box is clicked
+            maskBox.addEventListener("click", randomizeAllEyes);
+        });
     </script>
 
 </body>

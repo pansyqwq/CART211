@@ -1,3 +1,5 @@
+
+
 /* code for the menu bar, located to the right */
 .side-nav {
     position: fixed;
@@ -57,24 +59,29 @@
 
 .Eye_Stack {
     position: relative;
-    width: clamp(50vmin, 60vmin, 70rem);
-    height: clamp(50vmin, 60vmin, 70rem);
+    width: 100%;      /* 做得比盒子稍大一点，这样移动时不会露出空白 */
+    height: 100%;
 }
 
 .eye-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;           /* make them same size */
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;  /* so they don’t block each other */
+    width: 100%;
+    height: auto;
+    object-fit: cover;   /* 覆盖整个 Eye_Stack，方便被裁切 */
+    pointer-events: none;
 }
 
 /* Remove spacing caused by <figure> */
 .Eye_Stack figure {
     margin: 0;
     padding: 0;
+}
+
+.eye-piece {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;    /* 填满自己的宽度，高度自动裁切 */
+    pointer-events: none; /* 不挡鼠标点击蒙版 */
 }
 
 .hover-text {
@@ -90,3 +97,18 @@ figure:hover .hover-text {
     display: block;             /* show on hover */
 }
 
+
+
+/* 蒙版盒子：长方形、overflow:hidden 就是蒙版效果 */
+.mask-box {
+    position: relative;
+    width: clamp(70vmin, 75vmin, 80rem);  /* 你可以调整长宽比例 */
+    height: clamp(65vmin, 70vmin, 90rem); /* 比较长的竖长方形 */
+    overflow: hidden;                     /* 重点：超出部分不显示 = 蒙版 */
+       background: #1940ff;
+    background: radial-gradient(
+        circle,
+        rgba(25, 64, 255, 1) 0%,
+        rgb(255, 255, 255) 100%
+    );
+}
