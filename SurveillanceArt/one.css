@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'Dimod';
+    src: url('../assets/fonts/dimod/DIMOD.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.title {
+    font-family: 'Dimod', sans-serif;
+    font-size: clamp(5vmin, 8vmin, 6rem);
+    font-weight: 400;
+    color: #005DCD;
+    letter-spacing: 0.1em;
+    line-height: 1;
+}
+
 /* code for the menu bar, located to the right */
 .side-nav {
     position: fixed;
@@ -126,9 +142,9 @@ figure:hover .hover-text {
 /* 蒙版盒子：长方形、overflow:hidden 就是蒙版效果 */
 .mask-box {
     position: relative;
-    width: clamp(70vmin, 75vmin, 80rem);
+     width: clamp(45vw, 60vw, 70rem);
     /* 你可以调整长宽比例 */
-    height: clamp(65vmin, 70vmin, 90rem);
+    height: clamp(60vh, 70vh, 90rem);
   
     overflow: hidden;
     /* 重点：超出部分不显示 = 蒙版 */
