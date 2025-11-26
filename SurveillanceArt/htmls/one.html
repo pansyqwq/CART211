@@ -6,7 +6,7 @@
     <title>ServeillanceArt</title>
     <meta name="author" content="Your Name">
     <meta name="copyright" content="© Ziyan Pan, cart 211 project, fall 2025,">
-    <link rel="stylesheet" href="../testing.css">
+    <link rel="stylesheet" href="../one.css">
 </head>
 
 <body>
@@ -27,58 +27,14 @@
             <div class="Eye_Stack" id="eye">
                 <figure>
                     <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
-                    <a href="#"><img src="../assets/images/BottomEye.png" alt="BottomEye" class="eye-layer bottom"></a>
-                    <div class="hover-text">BottomEye</div>
-                </figure>
-                <figure>
-                    <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
-                    <a href="#"><img src="../assets/images/EyeBall.png" alt="EyeBall" class="eye-layer ball"
-                            id="eyeball"></a>
-                    <div class="hover-text">BottomEye</div>
-                </figure>
-                <figure>
-                    <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
-                    <a href="#"><img src="../assets/images/OutterEye.png" alt="EyeLid" class="eye-layer lid"></a>
-                    <div class="hover-text">BottomEye</div>
+                    <a href="#"><img src="../assets/images/EyeStable.png" alt="EyeStable" class="eye-layer stable"></a>
+                    <div class="hover-text">StableEye</div>
                 </figure>
             </div>
         </div>
     </main>
 
     <script>
-        // 去 HTML 里找 id="eye" 的元素
-        const eye = document.getElementById('eye');
-        const eyeball = document.getElementById('eyeball');
-
-        //只有 鼠标在窗口区域时，这个函数才会一直被触发。
-        //function(e)是事件发生时要执行的代码
-        window.addEventListener('mousemove', function (e) {
-            // rect = “眼睛这个方块在窗口里的具体位置和大小”。
-            //getBoundingClientRect() = 返回一个矩阵对象
-            const rect = eye.getBoundingClientRect();
-
-            // get the center of the eye container
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-
-            // mouse vector relative to center
-            let dx = e.clientX - cx;
-            let dy = e.clientY - cy;
-
-            // how far the eyeball is allowed to move (tweak this!)
-            const maxOffset = rect.width * 0.20; // about 15% of eye size
-
-            // clamp the distance so it never leaves the allowed circle
-            const dist = Math.hypot(dx, dy);// math.hypot:勾股定理 dist = sqrt(dx² + dy²)
-            if (dist > maxOffset) {
-                const k = maxOffset / dist;
-                dx *= k;
-                dy *= k;
-            }
-
-            // apply movement,move the eyeball using transform
-            eyeball.style.transform = `translate(${dx}px, ${dy}px)`;
-        });
     </script>
 
 </body>
