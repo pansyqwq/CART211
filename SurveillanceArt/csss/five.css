@@ -90,19 +90,9 @@
     position: relative;
     width: clamp(50vmin, 60vmin, 70rem);
     height: clamp(50vmin, 60vmin, 70rem); /* 固定窗口大小 */
-
-    /* 把 humans.png 当成背景图放进这个框 */
-    background-image: url('../assets/images/anatomy.jpg');
-    background-repeat: no-repeat;      /* 不重复 */
-    background-size: contain;         /* 整张图完整显示在框里 */
-    /* 如果你想充满整个框，可以改成 background-size: cover; */
-
-    background-position: center center; /* 居中摆放 */
-
-    border: 0.2vmin solid black;
-    box-sizing: border-box;
     overflow: hidden;
 }
+
 
 .humans-img {
     width: 100%;
