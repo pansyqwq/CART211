@@ -1,47 +1,226 @@
+@font-face {
+    font-family: 'Dimod';
+    src: url('../assets/fonts/dimod/DIMOD.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.title {
+    font-family: 'Dimod', sans-serif;
+    font-size: clamp(5vmin, 8vmin, 6rem);
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    margin: 2vmin 0 1vmin 2vmin;
+}
+
+.title-break {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .title-break {
+        display: inline;
+        /* br 生效，I'M 和 TITLE 分两行 */
+    }
+
+    .title-space {
+        display: none;
+    }
+
+    .square-layout {
+        width: 90vw;
+        height: 140vw;
+        margin: 4vmin auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 5vh;
+        /* ⬅ 每两个图片块之间强制拉开 5vh 的距离 */
+    }
+
+
+     .activity {
+         width: fit-content;
+    }
+
+    .activity-walk {
+        top: auto;
+        right: auto;
+        left: 0;
+        /* 强制靠左 */
+        position: static;
+    }
+
+    .activity-work {
+        top: auto;
+        left: auto;
+        bottom: auto;
+        position: static;
+    }
+
+    /* make the images bigger */
+    .activity-img {
+        width: 50vw;
+        /* 视窗宽度的一半 */
+        max-width: none;
+        /* 不要被 200px 限制 */
+    }
+
+    .hover-text {
+        display: block;
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        transform: none; /* get rid of translate */
+        margin-left: 0.5rem;
+        font-size: 1rem;
+        color: #000000;
+        white-space: nowrap;
+    }
+}
+
 /* code for the menu bar, located to the right */
 .side-nav {
     position: fixed;
-    top: 15vh; /*always leave 30% space at the top*/
-    height: 70vh;   /*menu occupies only the middle 40%*/
-    right: 5vmin;              /* distance from right edge */
+    top: 15vh;
+    /*always leave 30% space at the top*/
+    height: 70vh;
+    /*menu occupies only the middle 40%*/
+    right: 5vmin;
+    /* distance from right edge */
 
- 
+
     display: grid;
-    grid-template-rows: repeat(10, 1fr);  /* 10 evenly spaced rows */
+    grid-template-rows: repeat(10, 1fr);
+    /* 10 evenly spaced rows */
     /* Divides that 70% height into 10 equal vertical tracks */
     /* Each circle sits in one track */
-    
-    align-items: center; 
+
+    align-items: center;
     z-index: 1000;
 }
 
 
 /* Active the current page */
 .nav-dot.active {
-    background-color: #005DCD;   /* blue fill */
-    border-color: #005DCD;       /* blue outline */
-    color: #CBD9D9;              /* light number */
+    background-color: #005DCD;
+    /* blue fill */
+    border-color: #005DCD;
+    /* blue outline */
+    color: #CBD9D9;
+    /* light number */
 }
+
 /* Base style for each circle */
 .nav-dot {
-    width: 4vmin;  /* rem = root font size unit, 1 rem= 16px */
+    width: 4vmin;
+    /* rem = root font size unit, 1 rem= 16px */
     height: 4vmin;
-    border-radius: 50%; /*turn the square into a circle */
-    border: 0.25vmin solid black;     /* black outline */
+    border-radius: 50%;
+    /*turn the square into a circle */
+    border: 0.25vmin solid black;
+    /* black outline */
 
-    background-color: #ebebeb;   /* inner color */
-    color: black;                /* number color */
+    background-color: #ebebeb;
+    /* inner color */
+    color: black;
+    /* number color */
 
     display: flex;
-    align-items: center; /* align-items controls vertical alignment center puts the number vertically in the middle */
+    align-items: center;
+    /* align-items controls vertical alignment center puts the number vertically in the middle */
     justify-content: center;
 
-    text-decoration: none; /*removes underline*/
-    font-family: inherit; /*use the same fornt as the parent element*/
-    font-weight: 400; /* text bold or not*/
+    text-decoration: none;
+    /*removes underline*/
+    font-family: inherit;
+    /*use the same fornt as the parent element*/
+    font-weight: 400;
+    /* text bold or not*/
     font-size: 2vmin;
     transition: background-color 0.2s ease,
-                border-color 0.2s ease,
-                color 0.2s ease,
-                transform 0.15s ease;
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.square-layout {
+    position: relative;
+    width: 80vw;
+    /* 占视窗宽度 80% */
+    max-width: 90vmin;
+    min-height: 80vmin;
+    margin: 8vmin auto 4vmin;
+    /* 往下多推一点，避免碰到 title */
+}
+
+.subtitle {
+    position: absolute;
+    max-width: 26ch;
+    color: #a2bfe3;
+    font-family: inherit;
+    font-size: 30px;
+}
+/* 三个小图标的共同样式 */
+.activity {
+    position: absolute;
+    margin: 0;
+}
+
+.activity-img {
+    width: clamp(150px, 18vw, 300px);
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.activity-img:hover {
+    transform: scale(1.25); /* 鼠标移入时放大 */
+}
+/* 默认 hover 文本隐藏 */
+.hover-text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%);
+    color: #000000;
+    font-size: 3vmin;
+}
+
+/* 移上去才出现文字 */
+.activity:hover .hover-text {
+    display: block;
+}
+
+/* 具体位置：eat 左上、walk 中右、work 左下 */
+.activity-eat {
+    top: 5%;
+    left: 5%;
+    border: 0.2vmin solid black;   /* responsive border */
+    background-color: #CBD9D9;
+   
+}
+
+.activity-walk {
+    top: 40%;
+    right: 5%;
+    border: 0.2vmin solid black;   /* responsive border */
+    background-color: #CBD9D9;
+}
+
+.activity-work {
+    bottom: 5%;
+    left: 5%;
+    border: 0.2vmin solid black;   /* responsive border */
+    background-color: #CBD9D9;
+}
+
+body{
+    background: #FFFFFF;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(0, 93, 205, 1) 100%);
 }
