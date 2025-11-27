@@ -1,3 +1,34 @@
+@font-face {
+    font-family: 'Dimod';
+    src: url('../assets/fonts/dimod/DIMOD.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.title {
+    font-family: 'Dimod', sans-serif;
+    font-size: clamp(5vmin, 8vmin, 6rem);
+    font-weight: 400;
+    color: #005DCD;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    margin: 2vmin 0 1vmin 2vmin; 
+}
+
+.title-break {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .title-break {
+        display: inline;   /* br 生效，I'M 和 TITLE 分两行 */
+    }
+
+    .title-space {
+        display: none;    
+    }
+}
+
 /* code for the menu bar, located to the right */
 .side-nav {
     position: fixed;
@@ -57,11 +88,11 @@ ease makes it start fast and end slow*/
     position: relative;
     width: 80%;       /* 10% margin left & right */
     height: 80vh;     /* space above/below */
-    margin: 0 auto;   /* center horizontally */
+    margin: 4vmin auto 0;   /* center horizontally */
     display: flex;    
     justify-content: center;   /* center Eye_Stack horizontally */
     align-items: center;       /* center Eye_Stack vertically */
-    border: 0px solid red;     /* (optional) debugging */
+
 }
 
 .Eye_Stack{
@@ -131,4 +162,11 @@ ease makes it start fast and end slow*/
     height: 100%;
     pointer-events: none; /* so clicks go through to links etc. */
     z-index: 99; 
+}
+
+body {
+ background: #1940ff;
+ background: radial-gradient(circle,
+            rgba(25, 64, 255, 1) 0%,
+            rgb(255, 255, 255) 100%);
 }
