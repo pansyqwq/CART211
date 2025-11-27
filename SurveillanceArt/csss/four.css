@@ -85,33 +85,23 @@
     align-items: center;
 }
 
-/* humans image container (reusing Eye_Stack class) */
+/* video container (replaces Eye_Stack image) */
 .Eye_Stack {
     position: relative;
     width: clamp(50vmin, 60vmin, 70rem);
-    height: clamp(50vmin, 60vmin, 70rem); /* 固定窗口大小 */
-
-    /* 把 humans.png 当成背景图放进这个框 */
-    background-image: url('../assets/images/humans.png');
-    background-repeat: no-repeat;      /* 不重复 */
-    background-size: contain;         /* 整张图完整显示在框里 */
-    /* 如果你想充满整个框，可以改成 background-size: cover; */
-
-    background-position: center center; /* 居中摆放 */
-
+    height: clamp(50vmin, 60vmin, 70rem);
     border: 0.2vmin solid black;
     box-sizing: border-box;
     overflow: hidden;
 }
 
-.humans-img {
+/* video itself */
+.model-video {
     width: 100%;
-    height: auto;
-    animation: humanAnim 10s linear infinite alternate forwards;
+    height: 100%;
+    object-fit: cover; /* or "contain" if you want full image without cropping */
+    display: block;
 }
-
-
-
 
 /* labels (subtitle / paragraph / MouseData) */
 .label {
@@ -161,48 +151,3 @@ body {
         #ffffff 100%
     );
 }
-
-@keyframes humanAnim {
-	0% {
-		animation-timing-function: ease-in;
-		opacity: 0;
-		transform: translateY(-250px);
-	}
-
-	38% {
-		animation-timing-function: ease-out;
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	55% {
-		animation-timing-function: ease-in;
-		transform: translateY(-65px);
-	}
-
-	72% {
-		animation-timing-function: ease-out;
-		transform: translateY(0);
-	}
-
-	81% {
-		animation-timing-function: ease-in;
-		transform: translateY(-28px);
-	}
-
-	90% {
-		animation-timing-function: ease-out;
-		transform: translateY(0);
-	}
-
-	95% {
-		animation-timing-function: ease-in;
-		transform: translateY(-8px);
-	}
-
-	100% {
-		animation-timing-function: ease-out;
-		transform: translateY(0);
-	}
-}
-

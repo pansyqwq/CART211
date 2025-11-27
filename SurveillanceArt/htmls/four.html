@@ -47,12 +47,18 @@
             </div>
 
             <!-- mouse data -->
-            <div class="label MouseData" id="MouseData">
-            </div>
+            <div class="label MouseData" id="MouseData"></div>
 
-            <!-- humans image (replaces Eye_Stack) -->
+            <!-- video container (replaces Humans image) -->
             <div class="Eye_Stack" id="eye">
-                <img src="../assets/images/humans.png" class="humans-img">
+                <video id="modelVideo"
+                       class="model-video"
+                       autoplay
+                       muted
+                       loop
+                       playsinline>
+                    <source src="../assets/video/model.mp4" type="video/mp4">
+                </video>
             </div>
 
         </div>
@@ -83,7 +89,7 @@
             const r1 = fromEl.getBoundingClientRect();
             const r2 = toEl.getBoundingClientRect();
 
-            // start: center of the image container + offset
+            // start: center of the video container + offset
             const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX;
             const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY;
 
@@ -98,8 +104,8 @@
         }
 
         function updateAllLines() {
-            updateLineBetween('line-subtitle', 'eye', 'subtitle', -20, -80);
-            updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
+            updateLineBetween('line-subtitle', 'eye', 'subtitle', -50, -120);
+            updateLineBetween('line-paragraph', 'eye', 'paragraph', -10, 0);
             updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
         }
 
