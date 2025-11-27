@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ServeillanceArt</title>
+    <meta name="author" content="Your Name">
+    <meta name="copyright" content="© Ziyan Pan, cart 211 project, fall 2025,">
+    <link rel="stylesheet" href="../csss/five.css">
+</head>
+
+<body>
+    <nav class="side-nav">
+        <a href="one.html" class="nav-dot">1</a>
+        <a href="sample.html" class="nav-dot">2</a>
+        <a href="three.html" class="nav-dot">3</a>
+        <a href="four.html" class="nav-dot">4</a>
+        <a href="five.html" class="nav-dot active">5</a>
+        <a href="six.html" class="nav-dot">6</a>
+        <a href="seven.html" class="nav-dot">7</a>
+        <a href="eight.html" class="nav-dot">8</a>
+        <a href="nine.html" class="nav-dot">9</a>
+        <a href="ten.html" class="nav-dot">10</a>
+    </nav>
+
+    <main>
+        <h1 class="title">
+            I'M<span class="title-space"> </span><br class="title-break">TITLE
+        </h1>
+
+        <div class="center-wrapper">
+            <!-- lines -->
+            <svg class="link-lines" id="lines">
+                <line id="line-subtitle" stroke="#005DCD" stroke-width="2" />
+                <line id="line-paragraph" stroke="#005DCD" stroke-width="2" />
+                <line id="line-MouseData" stroke="#005DCD" stroke-width="2" />
+            </svg>
+
+            <!-- subtitle -->
+            <div class="label subtitle" id="subtitle">
+                I'm subtitles
+            </div>
+
+            <!-- paragraph -->
+            <div class="label paragraph" id="paragraph">
+                I'm paragraphs, paragraphs paragraph and data data data
+            </div>
+
+            <!-- mouse data -->
+            <div class="label MouseData" id="MouseData">
+            </div>
+
+            <!-- humans image (replaces Eye_Stack) -->
+            <div class="Eye_Stack" id="eye">
+                <img src="../assets/images/anatomy.jpg" class="humans-img">
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const mouseDataBox = document.getElementById('MouseData');
+
+        // show mouse coordinates
+        window.addEventListener('mousemove', function (e) {
+            if (mouseDataBox) {
+                mouseDataBox.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+            }
+        });
+
+        // draw a line between two elements inside .center-wrapper
+        function updateLineBetween(lineId, fromId, toId, startOffsetX = 0, startOffsetY = 0) {
+            const container = document.querySelector('.center-wrapper');
+            if (!container) return;
+
+            const containerRect = container.getBoundingClientRect();
+
+            const fromEl = document.getElementById(fromId);
+            const toEl = document.getElementById(toId);
+            const line = document.getElementById(lineId);
+            if (!fromEl || !toEl || !line) return;
+
+            const r1 = fromEl.getBoundingClientRect();
+            const r2 = toEl.getBoundingClientRect();
+
+            // start: center of the image container + offset
+            const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX;
+            const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY;
+
+            // end: center of the text box
+            const x2 = r2.left + r2.width / 2 - containerRect.left;
+            const y2 = r2.top + r2.height / 2 - containerRect.top;
+
+            line.setAttribute('x1', x1);
+            line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2);
+            line.setAttribute('y2', y2);
+        }
+
+        function updateAllLines() {
+            updateLineBetween('line-subtitle', 'eye', 'subtitle', -20, -80);
+            updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
+            updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
+        }
+
+        window.addEventListener('load', updateAllLines);
+        window.addEventListener('resize', updateAllLines);
+    </script>
+
+</body>
+
+</html>
