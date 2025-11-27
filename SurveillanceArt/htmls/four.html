@@ -22,116 +22,72 @@
         <a href="nine.html" class="nav-dot">9</a>
         <a href="ten.html" class="nav-dot">10</a>
     </nav>
+
     <main>
         <h1 class="title">
             I'M<span class="title-space"> </span><br class="title-break">TITLE
         </h1>
+
         <div class="center-wrapper">
-            <!-- I have lines -->
+            <!-- lines -->
             <svg class="link-lines" id="lines">
                 <line id="line-subtitle" stroke="#005DCD" stroke-width="2" />
                 <line id="line-paragraph" stroke="#005DCD" stroke-width="2" />
                 <line id="line-MouseData" stroke="#005DCD" stroke-width="2" />
             </svg>
-            <!-- I have subtitles -->
+
+            <!-- subtitle -->
             <div class="label subtitle" id="subtitle">
                 I'm subtitles
             </div>
 
-            <!-- I have paragraph -->
+            <!-- paragraph -->
             <div class="label paragraph" id="paragraph">
                 I'm paragraphs, paragraphs paragraph and data data data
             </div>
 
-            <!-- I have mouse data -->
+            <!-- mouse data -->
             <div class="label MouseData" id="MouseData">
-
             </div>
 
+            <!-- humans image (replaces Eye_Stack) -->
             <div class="Eye_Stack" id="eye">
-                <figure>
-                    <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
-                    <a href="#"><img src="../assets/images/BottomEye.png" alt="BottomEye" class="eye-layer bottom"></a>
-                    <div class="hover-text">BottomEye</div>
-                </figure>
-                <figure>
-                    <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
-                    <a href="#"><img src="../assets/images/EyeBall.png" alt="EyeBall" class="eye-layer ball"
-                            id="eyeball"></a>
-                    <div class="hover-text">BottomEye</div>
-                </figure>
-                <figure>
-                    <!-- src is the source, alt means if the image doesn’t show up, the browser will display the text -->
-                    <a href="#"><img src="../assets/images/OutterEye.png" alt="EyeLid" class="eye-layer lid"></a>
-                    <div class="hover-text">BottomEye</div>
-                </figure>
+                <img src="../assets/images/humans.png" class="humans-img">
             </div>
+
         </div>
     </main>
 
     <script>
-        // 去 HTML 里找 id="eye" 的元素
-        const eye = document.getElementById('eye');
-        const eyeball = document.getElementById('eyeball');
         const mouseDataBox = document.getElementById('MouseData');
 
-
-        //只有 鼠标在窗口区域时，这个函数才会一直被触发。
-        //function(e)是事件发生时要执行的代码
+        // show mouse coordinates
         window.addEventListener('mousemove', function (e) {
-            // rect = “眼睛这个方块在窗口里的具体位置和大小”。
-            //getBoundingClientRect() = 返回一个矩阵对象
-            const rect = eye.getBoundingClientRect();
-
-            // get the center of the eye container
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-
-            // mouse vector relative to center
-            let dx = e.clientX - cx;
-            let dy = e.clientY - cy;
-
-            // how far the eyeball is allowed to move (tweak this!)
-            const maxOffset = rect.width * 0.20; // about 15% of eye size
-
-            // clamp the distance so it never leaves the allowed circle
-            const dist = Math.hypot(dx, dy);// math.hypot:勾股定理 dist = sqrt(dx² + dy²)
-            if (dist > maxOffset) {
-                const k = maxOffset / dist;
-                dx *= k;
-                dy *= k;
-            }
-
-            // apply movement,move the eyeball using transform
-            eyeball.style.transform = `translate(${dx}px, ${dy}px)`;
-
-            // Show mouse coordinates
             if (mouseDataBox) {
                 mouseDataBox.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
             }
         });
+
+        // draw a line between two elements inside .center-wrapper
         function updateLineBetween(lineId, fromId, toId, startOffsetX = 0, startOffsetY = 0) {
             const container = document.querySelector('.center-wrapper');
             if (!container) return;
-            const containerRect = container.getBoundingClientRect(); // get data from center-wrapper
+
+            const containerRect = container.getBoundingClientRect();
 
             const fromEl = document.getElementById(fromId);
-            // Look inside the HTML document
-            // Find the element with the ID equal to the value in fromId
-            // Save it into the variable fromEl
             const toEl = document.getElementById(toId);
             const line = document.getElementById(lineId);
             if (!fromEl || !toEl || !line) return;
 
-            const r1 = fromEl.getBoundingClientRect(); //r1 contains the exact onscreen rectangle of the eye.
-            const r2 = toEl.getBoundingClientRect(); //r2 contains the onscreen rectangle of the subtitle text.
+            const r1 = fromEl.getBoundingClientRect();
+            const r2 = toEl.getBoundingClientRect();
 
-            //center of the eye + offset
-            const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX; //r1.left + r1.width / 2 → x coordinate of the center of the eye
-            const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY; //r1.top + r1.height / 2 → y coordinate of the center of the eye
-            //convert from page coordinates → local layout coordinates
+            // start: center of the image container + offset
+            const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX;
+            const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY;
 
-            // x2,y2: center of the text box (no offset)
+            // end: center of the text box
             const x2 = r2.left + r2.width / 2 - containerRect.left;
             const y2 = r2.top + r2.height / 2 - containerRect.top;
 
@@ -141,15 +97,16 @@
             line.setAttribute('y2', y2);
         }
 
-
         function updateAllLines() {
             updateLineBetween('line-subtitle', 'eye', 'subtitle', -20, -80);
             updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
             updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
         }
 
-        window.addEventListener('load', updateAllLines);// when the page opens, load the lines
+        window.addEventListener('load', updateAllLines);
         window.addEventListener('resize', updateAllLines);
     </script>
 
 </body>
+
+</html>

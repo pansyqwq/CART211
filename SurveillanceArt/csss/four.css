@@ -12,7 +12,7 @@
     color: #005DCD;
     letter-spacing: 0.1em;
     line-height: 1;
-    margin: 2vmin 0 1vmin 2vmin; 
+    margin: 2vmin 0 1vmin 2vmin;
 }
 
 .title-break {
@@ -25,107 +25,95 @@
     }
 
     .title-space {
-        display: none;    
+        display: none;
     }
 }
 
-/* code for the menu bar, located to the right */
+/* side menu */
 .side-nav {
     position: fixed;
-    top: 15vh; /*always leave 30% space at the top*/
-    height: 70vh;   /*menu occupies only the middle 40%*/
-    right: 5vmin;              /* distance from right edge */
+    top: 15vh;
+    height: 70vh;
+    right: 5vmin;
 
- 
     display: grid;
-    grid-template-rows: repeat(10, 1fr);  /* 10 evenly spaced rows */
-    /* Divides that 70% height into 10 equal vertical tracks */
-    /* Each circle sits in one track */
-    
-    align-items: center; 
+    grid-template-rows: repeat(10, 1fr);
+    align-items: center;
     z-index: 1000;
 }
 
-
-/* Active the current page */
+/* active page */
 .nav-dot.active {
-    background-color: #005DCD;   /* blue fill */
-    border-color: #005DCD;       /* blue outline */
-    color: #CBD9D9;              /* light number */
+    background-color: #005DCD;
+    border-color: #005DCD;
+    color: #CBD9D9;
 }
-/* Base style for each circle */
-.nav-dot {
-    width: 4vmin;  /* rem = root font size unit, 1 rem= 16px */
-    height: 4vmin;
-    border-radius: 50%; /*turn the square into a circle */
-    border: 0.25vmin solid black;     /* black outline */
 
-    background-color: #ebebeb;   /* inner color */
-    color: black;                /* number color */
+/* base circle */
+.nav-dot {
+    width: 4vmin;
+    height: 4vmin;
+    border-radius: 50%;
+    border: 0.25vmin solid black;
+
+    background-color: #ebebeb;
+    color: black;
 
     display: flex;
-    align-items: center; /* align-items controls vertical alignment center puts the number vertically in the middle */
+    align-items: center;
     justify-content: center;
 
-    text-decoration: none; /*removes underline*/
-    font-family: inherit; /*use the same fornt as the parent element*/
-    font-weight: 400; /* text bold or not*/
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 400;
     font-size: 2vmin;
-    transition: background-color 0.2s ease,
-                border-color 0.2s ease,
-                color 0.2s ease,
-                transform 0.15s ease;
-/*Background color animation takes 0.2s
-Border color animation takes 0.2s
-Number color animation takes 0.2s
-Any transform (like scale on hover) animates in 0.15s
-ease makes it start fast and end slow*/
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
 }
 
-
-/* Wrapper to center only the eye stack */
+/* main center area */
 .center-wrapper {
     position: relative;
-    width: 80%;       /* 10% margin left & right */
-    height: 80vh;     /* space above/below */
-    margin: 4vmin auto 0;   /* center horizontally */
-    display: flex;    
-    justify-content: center;   /* center Eye_Stack horizontally */
-    align-items: center;       /* center Eye_Stack vertically */
-
+    width: 80%;
+    height: 80vh;
+    margin: 4vmin auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.Eye_Stack{
+/* humans image container (reusing Eye_Stack class) */
+.Eye_Stack {
     position: relative;
-    width:clamp(50vmin, 60vmin, 70rem);  
-    height: clamp(50vmin, 60vmin, 70rem); /* 70% of the screen size*/
+    width: clamp(50vmin, 60vmin, 70rem);
+    height: clamp(50vmin, 60vmin, 70rem); /* 固定窗口大小 */
+
+    /* 把 humans.png 当成背景图放进这个框 */
+    background-image: url('../assets/images/humans.png');
+    background-repeat: no-repeat;      /* 不重复 */
+    background-size: contain;         /* 整张图完整显示在框里 */
+    /* 如果你想充满整个框，可以改成 background-size: cover; */
+
+    background-position: center center; /* 居中摆放 */
+
+    border: 0.2vmin solid black;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-.eye-layer{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;   /* make them same size */
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none; /*so they don’t block each other */
-    border: 0.2vmin solid black;   /* responsive border */
-    box-sizing: border-box;        /* prevents layout shift */
+.humans-img {
+    width: 100%;
+    height: auto;
+    animation: humanAnim 10s linear infinite alternate forwards;
 }
 
-/* Remove spacing caused by <figure> */
-.Eye_Stack figure {
-    margin: 0;
-    padding: 0;
-}
-
-/* order: bottom < ball < lid */
-.bottom { z-index: 1; }
-.ball   { z-index: 2; }
-.lid    { z-index: 3; }
 
 
-/* labels (subtitle / paragraph) */
+
+/* labels (subtitle / paragraph / MouseData) */
 .label {
     position: absolute;
     max-width: 26ch;
@@ -134,39 +122,87 @@ ease makes it start fast and end slow*/
     z-index: 80;
 }
 
-/* place the subtitle */
+/* subtitle position */
 .subtitle {
     top: 15%;
     left: 12%;
 }
 
-/* place the subtitle */
+/* paragraph position */
 .paragraph {
     bottom: 12%;
     left: 15%;
-    color: #005DCD;
 }
 
+/* mouse data box */
 .MouseData {
     top: 20%;
     right: 15%;
-    color: #005dcd;
+    color: #005DCD;
     border: 1px solid #005DCD;
 }
 
 /* SVG that covers the whole layout for drawing lines */
 .link-lines {
     position: absolute;
-    inset: 0;     /* top:0; right:0; bottom:0; left:0 */
+    inset: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* so clicks go through to links etc. */
-    z-index: 99; 
+    pointer-events: none;
+    z-index: 99;
 }
 
+/* background */
 body {
- background: #1940ff;
- background: radial-gradient(circle,
-            rgba(25, 64, 255, 1) 0%,
-            #ffffff 100%);
+    background: #1940ff;
+    background: radial-gradient(
+        circle,
+        rgba(25, 64, 255, 1) 0%,
+        #ffffff 100%
+    );
 }
+
+@keyframes humanAnim {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+
+	38% {
+		animation-timing-function: ease-out;
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	55% {
+		animation-timing-function: ease-in;
+		transform: translateY(-65px);
+	}
+
+	72% {
+		animation-timing-function: ease-out;
+		transform: translateY(0);
+	}
+
+	81% {
+		animation-timing-function: ease-in;
+		transform: translateY(-28px);
+	}
+
+	90% {
+		animation-timing-function: ease-out;
+		transform: translateY(0);
+	}
+
+	95% {
+		animation-timing-function: ease-in;
+		transform: translateY(-8px);
+	}
+
+	100% {
+		animation-timing-function: ease-out;
+		transform: translateY(0);
+	}
+}
+
