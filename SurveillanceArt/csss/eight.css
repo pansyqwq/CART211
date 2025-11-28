@@ -113,6 +113,8 @@ body {
 
 .window-medium {
     width: 18vmin;
+    animation: mediumAnim 21s ease 0s infinite normal forwards;
+    transform-origin: center center;
 }
 
 .window-small {
@@ -263,4 +265,32 @@ body {
         animation-timing-function: ease-out;
         transform: scale(1);
     }
+}
+
+@keyframes mediumAnim {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	10%,
+	30%,
+	50%,
+	70% {
+		transform: translateX(-10px);
+	}
+
+	20%,
+	40%,
+	60% {
+		transform: translateX(10px);
+	}
+
+	80% {
+		transform: translateX(8px);
+	}
+
+	90% {
+		transform: translateX(-8px);
+	}
 }
