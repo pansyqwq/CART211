@@ -22,87 +22,54 @@
         <a href="nine.html" class="nav-dot">9</a>
         <a href="ten.html" class="nav-dot">10</a>
     </nav>
+
     <main>
         <h1 class="title">
             I'M<span class="title-space"> </span><br class="title-break">TITLE
         </h1>
+
         <div class="center-wrapper">
-            <!-- I have lines -->
+            <!-- lines -->
             <svg class="link-lines" id="lines">
                 <line id="line-subtitle" stroke="#005DCD" stroke-width="2" />
                 <line id="line-paragraph" stroke="#005DCD" stroke-width="2" />
                 <line id="line-MouseData" stroke="#005DCD" stroke-width="2" />
             </svg>
-            <!-- I have subtitles -->
+
+            <!-- labels -->
             <div class="label subtitle" id="subtitle">
                 I'm subtitles
             </div>
 
-            <!-- I have paragraph -->
             <div class="label paragraph" id="paragraph">
                 I'm paragraphs, paragraphs paragraph and data data data
             </div>
 
-            <!-- I have mouse data -->
-            <div class="label MouseData" id="MouseData">
+            <div class="label MouseData" id="MouseData"></div>
 
-            </div>
-            <div class="Eye_Stack" id="eye">
-                <figure>
-                    <!-- the bottom BG -->
-                    <img src="../assets/images/window_BG.png" alt="Window background"
-                        class="window-layer window-bg-bottom">
-                </figure>
-
-                <figure>
-                    <!-- the window bar -->
-                    <img src="../assets/images/window_bar.png" alt="Window frame" class="window-layer window-bar-frame">
-                </figure>
-
-                <figure>
-                    <!-- the close button -->
-                    <img src="../assets/images/window_close.png" alt="Window close" class="window-layer window-close">
-                </figure>
-            </div>
-
-
+            <!-- container where JS will create 10 windows -->
+            <div class="windows-area" id="windowsArea"></div>
         </div>
     </main>
 
     <script>
-        // 去 HTML 里找 id="eye" 和 MouseData
-        const eye = document.getElementById('eye');
-        const mouseDataBox = document.getElementById('MouseData');
-
-        // 只显示鼠标坐标，不再让图片跟着动
-        window.addEventListener('mousemove', function (e) {
-            if (mouseDataBox) {
-                mouseDataBox.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
-            }
-        });
-
+        // draw a line between two elements (fromId → toId)
         function updateLineBetween(lineId, fromId, toId, startOffsetX = 0, startOffsetY = 0) {
             const container = document.querySelector('.center-wrapper');
             if (!container) return;
-            const containerRect = container.getBoundingClientRect(); // get data from center-wrapper
+            const containerRect = container.getBoundingClientRect();
 
             const fromEl = document.getElementById(fromId);
-            // Look inside the HTML document
-            // Find the element with the ID equal to the value in fromId
-            // Save it into the variable fromEl
             const toEl = document.getElementById(toId);
             const line = document.getElementById(lineId);
             if (!fromEl || !toEl || !line) return;
 
-            const r1 = fromEl.getBoundingClientRect(); //r1 contains the exact onscreen rectangle of the eye.
-            const r2 = toEl.getBoundingClientRect(); //r2 contains the onscreen rectangle of the subtitle text.
+            const r1 = fromEl.getBoundingClientRect();
+            const r2 = toEl.getBoundingClientRect();
 
-            //center of the eye + offset
-            const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX; //r1.left + r1.width / 2 → x coordinate of the center of the eye
-            const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY; //r1.top + r1.height / 2 → y coordinate of the center of the eye
-            //convert from page coordinates → local layout coordinates
+            const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX;
+            const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY;
 
-            // x2,y2: center of the text box (no offset)
             const x2 = r2.left + r2.width / 2 - containerRect.left;
             const y2 = r2.top + r2.height / 2 - containerRect.top;
 
@@ -112,15 +79,72 @@
             line.setAttribute('y2', y2);
         }
 
-
         function updateAllLines() {
+            // all lines start from the main window with id="eye"
             updateLineBetween('line-subtitle', 'eye', 'subtitle', -20, -80);
             updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
             updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
         }
 
-        window.addEventListener('load', updateAllLines);// when the page opens, load the lines
+        window.addEventListener('load', () => {
+            const mouseDataBox = document.getElementById('MouseData');
+
+            // show mouse coordinates in the MouseData label
+            window.addEventListener('mousemove', (e) => {
+                if (mouseDataBox) {
+                    mouseDataBox.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+                }
+            });
+
+            // create 10 window stacks inside windowsArea
+            const windowsArea = document.getElementById('windowsArea');
+            if (!windowsArea) return;
+
+            const windowConfigs = [
+                { sizeClass: 'window-large',  posClass: 'window-1'  },
+                { sizeClass: 'window-medium', posClass: 'window-2'  },
+                { sizeClass: 'window-large',  posClass: 'window-3'  },
+                { sizeClass: 'window-small',  posClass: 'window-4'  },
+                { sizeClass: 'window-large',  posClass: 'window-5'  },
+                { sizeClass: 'window-small',  posClass: 'window-6'  },
+                { sizeClass: 'window-medium', posClass: 'window-7'  },
+                { sizeClass: 'window-medium', posClass: 'window-8'  },
+                { sizeClass: 'window-small',  posClass: 'window-9'  },
+                { sizeClass: 'window-medium', posClass: 'window-10' },
+            ];
+
+            windowConfigs.forEach((cfg, index) => {
+                const stack = document.createElement('div');
+                stack.classList.add('Eye_Stack', cfg.sizeClass, cfg.posClass);
+
+                // first one is the "main" window for lines
+                if (index === 0) {
+                    stack.id = 'eye';
+                }
+
+                const layers = [
+                    { src: 'window_BG.png',   extraClass: 'window-bg-bottom', alt: 'Window background' },
+                    { src: 'window_bar.png',  extraClass: 'window-bar-frame', alt: 'Window frame' },
+                    { src: 'window_close.png', extraClass: 'window-close',    alt: 'Window close' },
+                ];
+
+                layers.forEach(layer => {
+                    const img = document.createElement('img');
+                    img.src = `../assets/images/${layer.src}`;
+                    img.alt = layer.alt;
+                    img.classList.add('window-layer', layer.extraClass);
+                    stack.appendChild(img);
+                });
+
+                windowsArea.appendChild(stack);
+            });
+
+            // after windows exist, draw lines
+            updateAllLines();
+        });
+
         window.addEventListener('resize', updateAllLines);
     </script>
-
 </body>
+
+</html>

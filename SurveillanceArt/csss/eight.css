@@ -1,3 +1,4 @@
+/* font */
 @font-face {
     font-family: 'Dimod';
     src: url('../assets/fonts/dimod/DIMOD.otf') format('opentype');
@@ -5,6 +6,16 @@
     font-style: normal;
 }
 
+/* page background */
+body {
+    margin: 0;
+    background: radial-gradient(circle,
+            rgba(25, 64, 255, 1) 0%,
+            #ffffff 100%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* title */
 .title {
     font-family: 'Dimod', sans-serif;
     font-size: clamp(5vmin, 8vmin, 6rem);
@@ -12,7 +23,7 @@
     color: #005DCD;
     letter-spacing: 0.1em;
     line-height: 1;
-    margin: 2vmin 0 1vmin 2vmin; 
+    margin: 2vmin 0 1vmin 2vmin;
 }
 
 .title-break {
@@ -21,120 +32,176 @@
 
 @media (max-width: 800px) {
     .title-break {
-        display: inline;   /* br 生效，I'M 和 TITLE 分两行 */
+        display: inline;
     }
 
     .title-space {
-        display: none;    
+        display: none;
     }
 }
 
-/* code for the menu bar, located to the right */
+/* side navigation dots */
 .side-nav {
     position: fixed;
-    top: 15vh; /*always leave 30% space at the top*/
-    height: 70vh;   /*menu occupies only the middle 40%*/
-    right: 5vmin;              /* distance from right edge */
-
- 
+    top: 15vh;
+    height: 70vh;
+    right: 5vmin;
     display: grid;
-    grid-template-rows: repeat(10, 1fr);  /* 10 evenly spaced rows */
-    /* Divides that 70% height into 10 equal vertical tracks */
-    /* Each circle sits in one track */
-    
-    align-items: center; 
+    grid-template-rows: repeat(10, 1fr);
+    align-items: center;
     z-index: 1000;
 }
 
-
-/* Active the current page */
-.nav-dot.active {
-    background-color: #005DCD;   /* blue fill */
-    border-color: #005DCD;       /* blue outline */
-    color: #CBD9D9;              /* light number */
-}
-/* Base style for each circle */
 .nav-dot {
-    width: 4vmin;  /* rem = root font size unit, 1 rem= 16px */
+    width: 4vmin;
     height: 4vmin;
-    border-radius: 50%; /*turn the square into a circle */
-    border: 0.25vmin solid black;     /* black outline */
-
-    background-color: #ebebeb;   /* inner color */
-    color: black;                /* number color */
-
+    border-radius: 50%;
+    border: 0.25vmin solid black;
+    background-color: #ebebeb;
+    color: black;
     display: flex;
-    align-items: center; /* align-items controls vertical alignment center puts the number vertically in the middle */
+    align-items: center;
     justify-content: center;
-
-    text-decoration: none; /*removes underline*/
-    font-family: inherit; /*use the same fornt as the parent element*/
-    font-weight: 400; /* text bold or not*/
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 400;
     font-size: 2vmin;
     transition: background-color 0.2s ease,
                 border-color 0.2s ease,
                 color 0.2s ease,
                 transform 0.15s ease;
-/*Background color animation takes 0.2s
-Border color animation takes 0.2s
-Number color animation takes 0.2s
-Any transform (like scale on hover) animates in 0.15s
-ease makes it start fast and end slow*/
 }
 
+.nav-dot.active {
+    background-color: #005DCD;
+    border-color: #005DCD;
+    color: #CBD9D9;
+}
 
-/* Wrapper to center only the eye stack */
+/* layout center area */
 .center-wrapper {
     position: relative;
-    width: 80%;       /* 10% margin left & right */
-    height: 80vh;     /* space above/below */
-    margin: 4vmin auto 0;   /* center horizontally */
-    display: flex;    
-    justify-content: center;   /* center Eye_Stack horizontally */
-    align-items: center;       /* center Eye_Stack vertically */
-
+    width: 80%;
+    height: 80vh;
+    margin: 4vmin auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.Eye_Stack {
+/* area that holds all 10 windows */
+.windows-area {
     position: relative;
-    width: clamp(50vmin, 60vmin, 70rem);
-    aspect-ratio: 4 / 3; 
-    border: 0.2vmin solid black;   /* responsive border */
-    box-sizing: border-box; 
+    width: 70vmin;
+    height: 50vmin;
 }
 
-/* 三层 window 通用样式 */
+/* one window stack (three images) */
+.Eye_Stack {
+    position: absolute;
+    aspect-ratio: 4 / 3;        /* 75% height rectangle */
+    border: 0.2vmin solid black;
+    box-sizing: border-box;
+}
+
+/* size variants */
+.window-large {
+    width: 24vmin;
+    animation: largeAnim 8s ease 0s infinite normal forwards; 
+    transform-origin: center center;
+}
+
+
+.window-medium {
+    width: 18vmin;
+}
+
+.window-small {
+    width: 10vmin;
+}
+
+/* window background transparency by size */
+.window-large .window-bg-bottom {
+    opacity: 0.5;   /* 50% */
+}
+
+.window-medium .window-bg-bottom {
+    opacity: 0.35;  /* 35% */
+}
+
+.window-small .window-bg-bottom {
+    opacity: 0.2;   /* 20% */
+}
+
+/* positions of windows */
+.window-1 {  /* big bottom-left */
+    left: 5%;
+    top: 55%;
+}
+
+.window-2 {  /* mid-left */
+    left: 22%;
+    top: 35%;
+}
+
+.window-3 {  /* big top-center */
+    left: 42%;
+    top: 5%;
+}
+
+.window-4 {  /* small center */
+    left: 47%;
+    top: 32%;
+}
+
+.window-5 {  /* big mid-right */
+    left: 65%;
+    top: 38%;
+}
+
+.window-6 {  /* small top-right */
+    left: 75%;
+    top: 18%;
+}
+
+.window-7 {  /* medium bottom-right */
+    left: 70%;
+    top: 65%;
+}
+
+.window-8 {  /* medium bottom-middle */
+    left: 50%;
+    top: 70%;
+}
+
+.window-9 {  /* small near center bottom */
+    left: 40%;
+    top: 55%;
+}
+
+.window-10 { /* right-bottom rectangle */
+    left: 80%;
+    top: 72%;
+}
+
+/* shared window image layer styles */
 .window-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: contain;   /* use 'fill' if you want stretching */
     pointer-events: none;
 }
 
-/* 去掉 figure 自带间距 */
+/* remove default figure spacing (in case we ever wrap images) */
 .Eye_Stack figure {
     margin: 0;
     padding: 0;
 }
 
-/* 图层顺序：底层 BG < 中间 BG（带边框）< 关闭按钮 */
-.window-bg-bottom {
-    z-index: 1;
-}
-
-.window-bar-frame {
-    z-index: 2;
-}
-
-.window-close {
-    z-index: 3;
-}
-
-
-/* labels (subtitle / paragraph) */
+/* labels: subtitle, paragraph, MouseData */
 .label {
     position: absolute;
     max-width: 26ch;
@@ -143,39 +210,58 @@ ease makes it start fast and end slow*/
     z-index: 80;
 }
 
-/* place the subtitle */
 .subtitle {
     top: 15%;
     left: 12%;
 }
 
-/* place the subtitle */
 .paragraph {
     bottom: 12%;
     left: 15%;
-    color: #005DCD;
 }
 
 .MouseData {
     top: 20%;
     right: 15%;
-    color: #005dcd;
     border: 1px solid #005DCD;
+    padding: 0.5vmin 1vmin;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
 }
 
-/* SVG that covers the whole layout for drawing lines */
+/* SVG that covers the layout for drawing lines */
 .link-lines {
     position: absolute;
-    inset: 0;     /* top:0; right:0; bottom:0; left:0 */
+    inset: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* so clicks go through to links etc. */
-    z-index: 99; 
+    pointer-events: none;
+    z-index: 99;
 }
 
-body {
- background: #1940ff;
- background: radial-gradient(circle,
-            rgba(25, 64, 255, 1) 0%,
-            #ffffff 100%);
+@keyframes largeAnim {
+    0% {
+        animation-timing-function: ease-out;
+        transform: scale(1);
+    }
+
+    10% {
+        animation-timing-function: ease-in;
+        transform: scale(0.91);
+    }
+
+    17% {
+        animation-timing-function: ease-out;
+        transform: scale(0.98);
+    }
+
+    33% {
+        animation-timing-function: ease-in;
+        transform: scale(0.87);
+    }
+
+    45% {
+        animation-timing-function: ease-out;
+        transform: scale(1);
+    }
 }
