@@ -203,6 +203,7 @@
     left: 5%;
     border: 0.2vmin solid black;   /* responsive border */
     background-color: #CBD9D9;
+    opacity: 0.6;
    
 }
 
@@ -211,6 +212,7 @@
     right: 5%;
     border: 0.2vmin solid black;   /* responsive border */
     background-color: #CBD9D9;
+    opacity: 0.6;
 }
 
 .activity-work {
@@ -218,6 +220,7 @@
     left: 5%;
     border: 0.2vmin solid black;   /* responsive border */
     background-color: #CBD9D9;
+    opacity: 0.6;
 }
 
 /* background */
