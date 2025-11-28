@@ -6,7 +6,7 @@
     <title>ServeillanceArt</title>
     <meta name="author" content="Your Name">
     <meta name="copyright" content="© Ziyan Pan, cart 211 project, fall 2025,">
-    <link rel="stylesheet" href="../csss/five.css">
+    <link rel="stylesheet" href="../csss/seven.css">
 </head>
 
 <body>
@@ -39,13 +39,15 @@
 
             <!-- subtitle -->
             <div class="label subtitle" id="subtitle">
-                Having Pain Anywhere? <br>     
-                It could be CANCER
+                Accept Cookies?<br>
+                Eat delicious cookies? <br>
+                They're cyber cookies
             </div>
 
             <!-- paragraph -->
             <div class="label paragraph" id="paragraph">
-                Call 999 for Professional Consultation 
+                We use cookies and similar technologies to help personalise content, tailor and measure ads, and provide a better experience. By clicking accept, you agree to this, as outlined in our Cookies Policy.
+
             </div>
 
             <!-- mouse data -->
@@ -54,8 +56,46 @@
 
             <!-- humans image (replaces Eye_Stack) -->
             <div class="Eye_Stack" id="eye">
-                <img src="../assets/images/anatomy.jpg" class="humans-img">
+
+                <div class="cookie-grid">
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_color.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                    <div class="cookie-cell"><img src="../assets/images/cookie_normal.png" alt="cookie"
+                            class="cookie-img"></div>
+                </div>
             </div>
+
 
         </div>
     </main>
@@ -66,7 +106,7 @@
         // show mouse coordinates
         window.addEventListener('mousemove', function (e) {
             if (mouseDataBox) {
-                mouseDataBox.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+                mouseDataBox.textContent = `Accept: ${e.clientX}, Preferences: ${e.clientY}`;
             }
         });
 
@@ -105,7 +145,36 @@
             updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
         }
 
-        window.addEventListener('load', updateAllLines);
+        // ----------------------------------------
+        // ⭐⭐⭐ COOKIE RANDOM ROTATION PART ⭐⭐⭐
+        // ----------------------------------------
+
+        // random angle between -30° and 30°
+        function getRandomAngle() {
+            const min = 0;
+            const max = 360;
+            return min + Math.random() * (max - min);
+        }
+
+        function initCookieRotations() {
+            const cookies = document.querySelectorAll('.cookie-img');
+            cookies.forEach(img => {
+                // set random angle on load
+                img.style.transform = `rotate(${getRandomAngle()}deg)`;
+
+                // new random angle on click
+                img.addEventListener('mouseenter', () => {
+                    img.style.transform = `rotate(${getRandomAngle()}deg)`;
+                });
+            });
+        }
+
+        // run after page loads
+        window.addEventListener('load', () => {
+            updateAllLines();
+            initCookieRotations();  // ⭐ important
+        });
+
         window.addEventListener('resize', updateAllLines);
     </script>
 

@@ -85,22 +85,37 @@
     align-items: center;
 }
 
-/* humans image container (reusing Eye_Stack class) */
+/* cookies image container (reusing Eye_Stack class) */
 .Eye_Stack {
     position: relative;
     width: clamp(50vmin, 60vmin, 70rem);
-    height: clamp(50vmin, 60vmin, 70rem); /* 固定窗口大小 */
+    height: clamp(50vmin, 60vmin, 70rem);
     overflow: hidden;
 }
 
-
-.humans-img {
+.cookie-grid {
     width: 100%;
-    height: auto;
-    animation: modelAnim 3s ease 0s infinite normal forwards;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 
+.cookie-cell {
+    position: relative;
+    border: 0.15vmin solid black;
+    box-sizing: border-box;
+}
+
+
+.cookie-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease; /* 点击时旋转更顺滑 */
+}
 
 
 /* labels (subtitle / paragraph / MouseData) */
@@ -150,32 +165,4 @@ body {
         rgba(25, 64, 255, 1) 0%,
         #ffffff 100%
     );
-}
-
-@keyframes modelAnim {
-	0% {
-		animation-timing-function: ease-out;
-		transform: scale(1);
-		transform-origin: center center;
-	}
-
-	10% {
-		animation-timing-function: ease-in;
-		transform: scale(0.91);
-	}
-
-	17% {
-		animation-timing-function: ease-out;
-		transform: scale(0.98);
-	}
-
-	33% {
-		animation-timing-function: ease-in;
-		transform: scale(0.87);
-	}
-
-	45% {
-		animation-timing-function: ease-out;
-		transform: scale(1);
-	}
 }
