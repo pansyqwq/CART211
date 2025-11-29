@@ -24,7 +24,7 @@ body {
 
 .title {
     font-family: 'Dimod', sans-serif;
-    font-size: clamp(5vmin, 8vmin, 6rem);
+    font-size: clamp(4vmin, 6vmin, 5rem);
     font-weight: 400;
     color: #005DCD;
     letter-spacing: 0.1em;
@@ -112,6 +112,8 @@ body {
     overflow: visible;
 }
 
+
+
 /* all images in the stack share same size & position */
 .Eye_Stack img {
     position: absolute;
@@ -122,39 +124,48 @@ body {
     object-fit: contain;
     display: block;
 }
-/* supernova behind the Eye_Stack */
-.supernova-bg {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;   /* ignore mouse events */
-    z-index: 0;             /* deepest layer */
-}
-
-.supernova-bg img {
-    width: 150%;            /* 150% of the Eye_Stack container */
-    height: 150%;
-    object-fit: contain;
-    opacity: 0.9;           /* optional – remove if not needed */
-}
 
 /* cookie in the middle */
 .cookie-img {
-    z-index: 2;
+    z-index: 3;
     transition: transform 0.3s ease;   /* for your random rotation */
 }
 
 /* back orbit image */
 .orbit-back {
-    z-index: 1;
+    z-index: 2;
 }
 
 /* front orbit image */
 .orbit-front {
-    z-index: 3;
+    z-index: 4;
     pointer-events: none;  /* so hover/mouse events go to cookie if needed */
+}
+
+.supernova-bg {
+    position: absolute;
+    inset: 0;            
+    margin: auto;
+    width: 150%;
+    height: 150%;
+    object-fit: contain;
+    display: block;
+    z-index: 1;
+    animation: supernovaAnim 8s ease 0s infinite normal forwards;
+}
+
+@keyframes supernovaAnim {
+	0% {
+		transform: scale(2);
+	}
+
+	50% {
+		transform: scale(2.2);
+	}
+
+	100% {
+		transform: scale(2);
+	}
 }
 
 

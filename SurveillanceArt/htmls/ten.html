@@ -26,7 +26,7 @@
 
     <main>
         <h1 class="title">
-            I'M<span class="title-space"> </span><br class="title-break">TITLE
+            Planet of<span class="title-space"> </span><br class="title-break">Capitalism
         </h1>
 
         <div class="center-wrapper">
@@ -39,16 +39,15 @@
 
             <!-- subtitle -->
             <div class="label subtitle" id="subtitle">
-                Accept Cookies?<br>
-                Eat delicious cookies?<br>
-                They're cyber cookies
+                It's all about $<br>
+                You can't spell my name<br>
+                Without the $ sign
             </div>
 
             <!-- paragraph -->
             <div class="label paragraph" id="paragraph">
-                We use cookies and similar technologies to help personalise content, tailor and
-                measure ads, and provide a better experience. By clicking accept, you agree to this,
-                as outlined in our Cookies Policy.
+               Will the Earth turn into the planet of capitalism? <br>
+               Will you consume my privacy the way you eat a cookie?
             </div>
 
             <!-- mouse data box -->
@@ -56,6 +55,7 @@
 
             <!-- single big cookie in the center -->
             <div class="Eye_Stack" id="eye">
+                <img src="../assets/images/supernova.png" alt="supernova" class="supernova-bg">
                 <!-- back layer -->
                 <img src="../assets/images/orbrid_back.png" alt="orbit back" class="orbit-img orbit-back">
 
@@ -75,7 +75,7 @@
         // show mouse coordinates in the box
         window.addEventListener('mousemove', (e) => {
             if (mouseDataBox) {
-                mouseDataBox.textContent = `Accept: ${e.clientX}, Preferences: ${e.clientY}`;
+                mouseDataBox.textContent = `$: ${e.clientX}, $: ${e.clientY}`;
             }
         });
 
@@ -110,7 +110,7 @@
 
         function updateAllLines() {
             updateLineBetween('line-subtitle', 'eye', 'subtitle', -70, -40);
-            updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
+            updateLineBetween('line-paragraph', 'eye', 'paragraph', 0, 20);
             updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
         }
 
