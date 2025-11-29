@@ -186,6 +186,9 @@ body {
     margin: 10vmin 18vmin 0 12vmin; /* more top margin + bigger side margins */
 }
 
+.row3 {
+    margin: 12vmin 20vmin 0 14vmin; /* more top margin + bigger side margins */
+}
 /* Dollar sign styling inside number-box */
 .number-box .currency {
     margin-right: 0.5rem;  /* small space between $ and number */
@@ -224,7 +227,6 @@ body {
     /* hide the rest of the long image */
     display: inline-block;
     box-sizing: border-box;
-
 }
 
 /* The long barcode image that slides horizontally */
@@ -235,8 +237,7 @@ body {
     /* keep aspect ratio */
     transform: translateX(0);
 
-    /* total duration: 2.5s, 20 steps => ~0.125s per visual change.
-       You can change 2.5s or 20 to tweak speed. */
+    /* total duration: 2.5s, 20 steps => ~0.125s per visual change. */
     animation: barcode-move 2.5s steps(20, end) infinite;
 }
 
@@ -246,7 +247,7 @@ body {
 }
 
 .barcode-strip-3 {
-    animation: barcode-move 2s steps(15, end) infinite;
+    animation: barcode-move 1s steps(15, end) infinite;
 }
 
 
@@ -258,8 +259,7 @@ body {
     }
 
     to {
-        /* distance depends on how wide your barcode image is.
-           Adjust this value until the motion looks good. */
+        /* distance */
         transform: translateX(-800px);
     }
 }
