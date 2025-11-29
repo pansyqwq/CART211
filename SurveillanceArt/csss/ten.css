@@ -1,0 +1,203 @@
+/* ===========================
+   1. FONT + TITLE
+   =========================== */
+@font-face {
+    font-family: 'Dimod';
+    src: url('../assets/fonts/dimod/DIMOD.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* page background */
+body {
+    margin: 0;
+    background: radial-gradient(
+        circle,
+        #ffffff 0%,
+        rgba(25, 64, 255, 1) 100%
+    );
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    color: #005DCD;
+}
+
+
+.title {
+    font-family: 'Dimod', sans-serif;
+    font-size: clamp(5vmin, 8vmin, 6rem);
+    font-weight: 400;
+    color: #005DCD;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    margin: 2vmin 0 1vmin 2vmin;
+}
+
+.title-break {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .title-break {
+        display: inline;   /* br works, I'M and TITLE on two lines */
+    }
+
+    .title-space {
+        display: none;
+    }
+}
+
+/* ===========================
+   2. SIDE NAV
+   =========================== */
+.side-nav {
+    position: fixed;
+    top: 15vh;
+    height: 70vh;
+    right: 5vmin;
+
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-dot {
+    width: 4vmin;
+    height: 4vmin;
+    border-radius: 50%;
+    border: 0.25vmin solid black;
+
+    background-color: #ebebeb;
+    color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 2vmin;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.nav-dot.active {
+    background-color: #005DCD;
+    border-color: #005DCD;
+    color: #CBD9D9;
+}
+
+/* ===========================
+   3. MAIN LAYOUT
+   =========================== */
+.center-wrapper {
+    position: relative;
+    width: 80%;
+    height: 80vh;
+    margin: 4vmin auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* single big cookie + orbit images container */
+.Eye_Stack {
+    position: relative;
+    width: clamp(35vmin, 45vmin, 60rem);
+    aspect-ratio: 1 / 1;
+    overflow: visible;
+}
+
+/* all images in the stack share same size & position */
+.Eye_Stack img {
+    position: absolute;
+    inset: 0;              /* top:0 right:0 bottom:0 left:0 */
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+/* supernova behind the Eye_Stack */
+.supernova-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;   /* ignore mouse events */
+    z-index: 0;             /* deepest layer */
+}
+
+.supernova-bg img {
+    width: 150%;            /* 150% of the Eye_Stack container */
+    height: 150%;
+    object-fit: contain;
+    opacity: 0.9;           /* optional – remove if not needed */
+}
+
+/* cookie in the middle */
+.cookie-img {
+    z-index: 2;
+    transition: transform 0.3s ease;   /* for your random rotation */
+}
+
+/* back orbit image */
+.orbit-back {
+    z-index: 1;
+}
+
+/* front orbit image */
+.orbit-front {
+    z-index: 3;
+    pointer-events: none;  /* so hover/mouse events go to cookie if needed */
+}
+
+
+/* ===========================
+   4. LABELS (TEXT BOXES)
+   =========================== */
+.label {
+    position: absolute;
+    max-width: 26ch;
+    color: #005DCD;
+    font-family: inherit;
+    z-index: 80;
+}
+
+/* subtitle box */
+.subtitle {
+    top: 15%;
+    left: 12%;
+}
+
+/* paragraph box */
+.paragraph {
+    bottom: 12%;
+    left: 15%;
+}
+
+/* mouse data box */
+.MouseData {
+    top: 20%;
+    right: 15%;
+    color: #005DCD;
+    border: 1px solid #005DCD;
+    padding: 0.5rem 0.75rem;
+}
+
+/* ===========================
+   5. SVG LINES
+   =========================== */
+.link-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99;
+}

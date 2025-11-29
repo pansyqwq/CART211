@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ServeillanceArt</title>
+    <meta name="author" content="Your Name">
+    <meta name="copyright" content="© Ziyan Pan, cart 211 project, fall 2025,">
+    <link rel="stylesheet" href="../csss/ten.css">
+</head>
+
+<body>
+    <!-- right side navigation dots -->
+    <nav class="side-nav">
+        <a href="one.html" class="nav-dot">1</a>
+        <a href="sample.html" class="nav-dot">2</a>
+        <a href="three.html" class="nav-dot">3</a>
+        <a href="four.html" class="nav-dot">4</a>
+        <a href="five.html" class="nav-dot">5</a>
+        <a href="six.html" class="nav-dot">6</a>
+        <a href="seven.html" class="nav-dot">7</a>
+        <a href="eight.html" class="nav-dot">8</a>
+        <a href="nine.html" class="nav-dot">9</a>
+        <a href="ten.html" class="nav-dot active">10</a>
+    </nav>
+
+    <main>
+        <h1 class="title">
+            I'M<span class="title-space"> </span><br class="title-break">TITLE
+        </h1>
+
+        <div class="center-wrapper">
+            <!-- connecting lines -->
+            <svg class="link-lines" id="lines">
+                <line id="line-subtitle" stroke="#005DCD" stroke-width="2"></line>
+                <line id="line-paragraph" stroke="#005DCD" stroke-width="2"></line>
+                <line id="line-MouseData" stroke="#005DCD" stroke-width="2"></line>
+            </svg>
+
+            <!-- subtitle -->
+            <div class="label subtitle" id="subtitle">
+                Accept Cookies?<br>
+                Eat delicious cookies?<br>
+                They're cyber cookies
+            </div>
+
+            <!-- paragraph -->
+            <div class="label paragraph" id="paragraph">
+                We use cookies and similar technologies to help personalise content, tailor and
+                measure ads, and provide a better experience. By clicking accept, you agree to this,
+                as outlined in our Cookies Policy.
+            </div>
+
+            <!-- mouse data box -->
+            <div class="label MouseData" id="MouseData"></div>
+
+            <!-- single big cookie in the center -->
+            <div class="Eye_Stack" id="eye">
+                <!-- back layer -->
+                <img src="../assets/images/orbrid_back.png" alt="orbit back" class="orbit-img orbit-back">
+
+                <!-- middle cookie -->
+                <img src="../assets/images/cookie_color.png" alt="cookie" class="cookie-img">
+
+                <!-- front layer -->
+                <img src="../assets/images/orbrid_front.png" alt="orbit front" class="orbit-img orbit-front">
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const mouseDataBox = document.getElementById('MouseData');
+
+        // show mouse coordinates in the box
+        window.addEventListener('mousemove', (e) => {
+            if (mouseDataBox) {
+                mouseDataBox.textContent = `Accept: ${e.clientX}, Preferences: ${e.clientY}`;
+            }
+        });
+
+        // draw a line between two elements inside .center-wrapper
+        function updateLineBetween(lineId, fromId, toId, startOffsetX = 0, startOffsetY = 0) {
+            const container = document.querySelector('.center-wrapper');
+            if (!container) return;
+
+            const containerRect = container.getBoundingClientRect();
+
+            const fromEl = document.getElementById(fromId);
+            const toEl = document.getElementById(toId);
+            const line = document.getElementById(lineId);
+            if (!fromEl || !toEl || !line) return;
+
+            const r1 = fromEl.getBoundingClientRect();
+            const r2 = toEl.getBoundingClientRect();
+
+            // start: center of the cookie container + offset
+            const x1 = r1.left + r1.width / 2 - containerRect.left + startOffsetX;
+            const y1 = r1.top + r1.height / 2 - containerRect.top + startOffsetY;
+
+            // end: center of the text box
+            const x2 = r2.left + r2.width / 2 - containerRect.left;
+            const y2 = r2.top + r2.height / 2 - containerRect.top;
+
+            line.setAttribute('x1', x1);
+            line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2);
+            line.setAttribute('y2', y2);
+        }
+
+        function updateAllLines() {
+            updateLineBetween('line-subtitle', 'eye', 'subtitle', -70, -40);
+            updateLineBetween('line-paragraph', 'eye', 'paragraph', 50, 120);
+            updateLineBetween('line-MouseData', 'eye', 'MouseData', 20, 30);
+        }
+
+        // random angle between 0° and 360°
+        function getRandomAngle() {
+            return Math.random() * 360;
+        }
+
+        // give the cookie a random rotation (on load + hover)
+        function initCookieRotations() {
+            const cookies = document.querySelectorAll('.cookie-img');
+            cookies.forEach(img => {
+                img.style.transform = `rotate(${getRandomAngle()}deg)`;
+
+                img.addEventListener('mouseenter', () => {
+                    img.style.transform = `rotate(${getRandomAngle()}deg)`;
+                });
+            });
+        }
+
+        // run after page loads
+        window.addEventListener('load', () => {
+            updateAllLines();
+            initCookieRotations();
+        });
+
+        // recalc lines on resize
+        window.addEventListener('resize', updateAllLines);
+    </script>
+
+</body>
+
+</html>
