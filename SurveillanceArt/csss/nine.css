@@ -240,6 +240,16 @@ body {
     animation: barcode-move 2.5s steps(20, end) infinite;
 }
 
+/* Reverse animation only for the second barcode */
+.barcode-strip-2 {
+    animation: barcode-move-reverse 2s steps(20, end) infinite;
+}
+
+.barcode-strip-3 {
+    animation: barcode-move 2s steps(15, end) infinite;
+}
+
+
 /* Animation: slide the long barcode image to the left.
    When it reaches the end, it jumps back and loops. */
 @keyframes barcode-move {
@@ -253,6 +263,16 @@ body {
         transform: translateX(-800px);
     }
 }
+
+@keyframes barcode-move-reverse {
+    from {
+        transform: translateX(-800px); /* start at the end */
+    }
+    to {
+        transform: translateX(0);      /* move to the beginning */
+    }
+}
+
 
 /* On very small screens, make the barcode wider relative to screen */
 @media (max-width: 600px) {
@@ -272,6 +292,11 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;   /* make sure line does NOT block clicking */
+}
+
+.connector-line {
+    stroke: #005DCD;      /* same blue as your UI */
+    stroke-width: 2.5px;
 }
 
 /* Style of the connector line */

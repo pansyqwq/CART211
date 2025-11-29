@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <!-- Right side navigation dots -->
     <nav class="side-nav">
         <a href="one.html" class="nav-dot">1</a>
         <a href="sample.html" class="nav-dot">2</a>
@@ -24,88 +25,152 @@
     </nav>
 
     <main>
-    <h1 class="title">
-        I'M<span class="title-space"> </span><br class="title-break">TITLE
-    </h1>
+        <h1 class="title">
+            I'M<span class="title-space"> </span><br class="title-break">TITLE
+        </h1>
 
-    <!-- ROW 1 -->
-    <div class="number-barcode-row row1">
-        <div class="number-box">
-            <span class="currency">$</span>
-            <span class="number" id="randomNumber1">0894</span>
+        <!-- ROW 1 -->
+        <div class="number-barcode-row row1">
+            <div class="number-box">
+                <span class="currency">$</span>
+                <span class="number" id="randomNumber1">0894</span>
+            </div>
+
+            <div class="barcode-window" id="barcodeWindow1">
+                <img src="../assets/images/barcode1.png" alt="Animated barcode" class="barcode-strip">
+            </div>
         </div>
 
-        <div class="barcode-window" id="barcodeWindow1">
-            <img src="../assets/images/barcode1.png" alt="Animated barcode" class="barcode-strip">
+        <!-- ROW 2 (lower + more inset towards center) -->
+        <div class="number-barcode-row row2">
+            <div class="number-box">
+                <span class="currency">$</span>
+                <span class="number" id="randomNumber2">7321</span>
+            </div>
+
+            <div class="barcode-window barcode-window-2" id="barcodeWindow2">
+                <img src="../assets/images/barcode1.png" alt="Animated barcode" class="barcode-strip barcode-strip-2">
+            </div>
+
         </div>
-    </div>
 
-    <!-- ROW 2 (lower + more inset towards center) -->
-    <div class="number-barcode-row row2">
-        <div class="number-box">
-            <span class="currency">$</span>
-            <span class="number" id="randomNumber2">7321</span>
+        <!-- ROW 3 (lower + more inset towards center) -->
+        <div class="number-barcode-row row3">
+            <div class="number-box">
+                <span class="currency">$</span>
+                <span class="number" id="randomNumber3">131</span>
+            </div>
+
+            <div class="barcode-window barcode-window-3" id="barcodeWindow3">
+                <img src="../assets/images/barcode1.png" alt="Animated barcode" class="barcode-strip barcode-strip-3">
+            </div>
+
         </div>
 
-        <div class="barcode-window" id="barcodeWindow2">
-            <img src="../assets/images/barcode1.png" alt="Animated barcode" class="barcode-strip">
-        </div>
-    </div>
+        <!-- SVG: two connector lines, one for each row -->
+        <svg class="connector" id="connectorSVG">
+            <line id="nb-line-1" class="connector-line" />
+            <line id="nb-line-2" class="connector-line" />
+            <line id="nb-line-3" class="connector-line" />
+        </svg>
+    </main>
 
-    <!-- SVG line still connects the FIRST pair -->
-    <svg class="connector" id="connectorSVG">
-        <line id="nb-line" />
-    </svg>
-</main>
+    <script>
+        // -------- RANDOM NUMBERS FOR BOTH ROWS --------
+        function updateRandomNumber(id) {
+            // generate a number between 0 and 9999
+            let num = Math.floor(Math.random() * 10000);
 
-   <script>
-    function updateRandomNumber(id) {
-        // generate a number between 0 and 9999
-        let num = Math.floor(Math.random() * 10000);
+            // keep 4 digits with leading zeros (e.g. 0043)
+            num = num.toString().padStart(4, '0');
 
-        // format with leading zeros (e.g. 0043)
-        num = num.toString().padStart(4, '0');
-
-        // only update the digits span, not the dollar sign
-        const span = document.getElementById(id);
-        if (span) {
-            span.textContent = num;
+            const span = document.getElementById(id);
+            if (span) {
+                span.textContent = num;
+            }
         }
-    }
 
-    // change both numbers every 0.08 seconds (80 ms)
-    setInterval(() => updateRandomNumber('randomNumber1'), 80);
-    setInterval(() => updateRandomNumber('randomNumber2'), 80);
+        // change both numbers every 80 ms
+        setInterval(() => updateRandomNumber('randomNumber1'), 80);
+        setInterval(() => updateRandomNumber('randomNumber2'), 80);
+        setInterval(() => updateRandomNumber('randomNumber3'), 80);
 
 
-    // --- line between first number and first barcode ---
+        // -------- CONNECTOR LINES FOR ROW 1 & ROW 2 --------
+        function updateLines() {
+            const line1 = document.getElementById('nb-line-1');
+            const line2 = document.getElementById('nb-line-2');
+            const line3 = document.getElementById('nb-line-3');
 
-    function updateLine() {
-        const numberBox = document.querySelector('.row1 .number-box');
-        const barcode = document.querySelector('.row1 .barcode-window');
-        const line = document.getElementById('nb-line');
+            // ----- Row 1 -----
+            const row1NumberBox = document.querySelector('.row1 .number-box');
+            const row1Barcode = document.querySelector('.row1 .barcode-window');
 
-        if (!numberBox || !barcode || !line) return;
+            if (row1NumberBox && row1Barcode && line1) {
+                const nbRect1 = row1NumberBox.getBoundingClientRect();
+                const bcRect1 = row1Barcode.getBoundingClientRect();
 
-        const nbRect = numberBox.getBoundingClientRect();
-        const bcRect = barcode.getBoundingClientRect();
+                const x1_1 = nbRect1.right;                         // right border of number box
+                const y1_1 = nbRect1.top + nbRect1.height / 2;      // vertical center
 
-        const x1 = nbRect.right;                     // right border of number-box
-        const y1 = nbRect.top + nbRect.height / 2;   // vertical middle
+                const x2_1 = bcRect1.left;                          // left border of barcode
+                const y2_1 = bcRect1.top + bcRect1.height / 2;      // vertical center
 
-        const x2 = bcRect.left;                      // left border of barcode
-        const y2 = bcRect.top + bcRect.height / 2;   // vertical middle
+                line1.setAttribute('x1', x1_1);
+                line1.setAttribute('y1', y1_1);
+                line1.setAttribute('x2', x2_1);
+                line1.setAttribute('y2', y2_1);
+            }
 
-        line.setAttribute("x1", x1);
-        line.setAttribute("y1", y1);
-        line.setAttribute("x2", x2);
-        line.setAttribute("y2", y2);
-    }
+            // ----- Row 2 -----
+            const row2NumberBox = document.querySelector('.row2 .number-box');
+            const row2Barcode = document.querySelector('.row2 .barcode-window');
 
-    window.addEventListener("resize", updateLine);
-    window.addEventListener("load", updateLine);
-    setInterval(updateLine, 50);
-</script>
+            if (row2NumberBox && row2Barcode && line2) {
+                const nbRect2 = row2NumberBox.getBoundingClientRect();
+                const bcRect2 = row2Barcode.getBoundingClientRect();
 
+                const x1_2 = nbRect2.right;
+                const y1_2 = nbRect2.top + nbRect2.height / 2;
+
+                const x2_2 = bcRect2.left;
+                const y2_2 = bcRect2.top + bcRect2.height / 2;
+
+                line2.setAttribute('x1', x1_2);
+                line2.setAttribute('y1', y1_2);
+                line2.setAttribute('x2', x2_2);
+                line2.setAttribute('y2', y2_2);
+            }
+
+            // ----- Row 2 -----
+            const row3NumberBox = document.querySelector('.row3 .number-box');
+            const row3Barcode = document.querySelector('.row3 .barcode-window');
+
+            if (row3NumberBox && row3Barcode && line3) {
+                const nbRect3 = row3NumberBox.getBoundingClientRect();
+                const bcRect3 = row3Barcode.getBoundingClientRect();
+
+                const x1_2 = nbRect3.right;
+                const y1_2 = nbRect3.top + nbRect3.height / 2;
+
+                const x2_2 = bcRect3.left;
+                const y2_2 = bcRect3.top + bcRect3.height / 2;
+
+                line3.setAttribute('x1', x1_2);
+                line3.setAttribute('y1', y1_2);
+                line3.setAttribute('x2', x2_2);
+                line3.setAttribute('y2', y2_2);
+            }
+        }
+
+        // update when page loads and when window resizes
+        window.addEventListener('load', updateLines);
+        window.addEventListener('resize', updateLines);
+
+        // also update frequently so the lines follow changing widths
+        setInterval(updateLines, 50);
+    </script>
 
 </body>
+
+</html>
