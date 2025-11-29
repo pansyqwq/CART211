@@ -1,0 +1,282 @@
+/* ===========================
+   1. FONT + GLOBAL STYLES
+   =========================== */
+
+/* Custom display font for titles / numbers */
+@font-face {
+    font-family: 'Dimod';
+    src: url('../assets/fonts/dimod/DIMOD.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Remove default margins so layout starts at the edges */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Background: blue radial gradient fading to white */
+body {
+    background: #1940ff;
+    background: radial-gradient(circle,
+            rgba(25, 64, 255, 1) 0%,
+            #ffffff 100%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    color: #005DCD;
+}
+
+/* ===========================
+   2. PAGE TITLE
+   =========================== */
+
+.title {
+    font-family: 'Dimod', sans-serif;
+    font-size: clamp(5vmin, 8vmin, 6rem);
+    font-weight: 400;
+    color: #005DCD;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    margin: 2vmin 0 1vmin 2vmin;
+}
+
+/* Used to manually break the title on small screens */
+.title-break {
+    display: none;
+}
+
+/* On small screens, show <br> and hide the extra space span */
+@media (max-width: 800px) {
+    .title-break {
+        display: inline;
+    }
+
+    .title-space {
+        display: none;
+    }
+}
+
+/* ===========================
+   3. SIDE NAV DOT MENU
+   =========================== */
+
+/* Right-side vertical navigation dots */
+.side-nav {
+    position: fixed;
+    top: 15vh;
+    /* leave some space at the top */
+    height: 70vh;
+    /* menu occupies the middle 70% of viewport */
+    right: 5vmin;
+    /* distance from right edge */
+
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    /* 10 evenly spaced rows */
+    align-items: center;
+    z-index: 1000;
+    /* make sure it sits above other content */
+}
+
+/* Style for each circle button */
+.nav-dot {
+    width: 4vmin;
+    height: 4vmin;
+    border-radius: 50%;
+    /* turn square into a circle */
+    border: 0.25vmin solid black;
+    /* black outline */
+
+    background-color: #ebebeb;
+    /* inner color */
+    color: black;
+    /* number color */
+
+    display: flex;
+    align-items: center;
+    /* vertical centering */
+    justify-content: center;
+    /* horizontal centering */
+
+    text-decoration: none;
+    /* remove underline */
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 2vmin;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+    /* smooth hover animation */
+}
+
+/* Hover effect for nav dots */
+.nav-dot:hover {
+    background-color: #005DCD;
+    border-color: #005DCD;
+    color: #CBD9D9;
+    transform: scale(1.05);
+}
+
+/* Active / current page dot */
+.nav-dot.active {
+    background-color: #005DCD;
+    /* blue fill */
+    border-color: #005DCD;
+    /* blue outline */
+    color: #CBD9D9;
+    /* light number */
+}
+
+/* ===========================
+   4. NUMBER + BARCODE ROW
+   =========================== */
+
+/* One horizontal row:
+   number box on the left, barcode on the right */
+.number-barcode-row {
+    display: flex;
+    align-items: center;
+    /* vertical alignment */
+    justify-content: space-between;
+    /* push number and barcode apart */
+
+    /* leave space for the side-nav on the right */
+    margin: 6vmin 14vmin 0 8vmin;
+    /* top, right, bottom, left */
+}
+
+/* The number box outlining the value (e.g., 894 / 73 / 31.9) */
+.number-box {
+    border: 2px solid #005DCD;
+    color: #005DCD;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(3rem, 6vmin, 4.5rem);
+
+    height: 8vw;
+    /* SAME as .barcode-window */
+    max-height: 80px;
+    /* SAME max height */
+
+    /* Remove padding so height is clean */
+    padding: 0;
+
+    /* Vertically + horizontally center the number */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    width: fit-content;
+    /* keeps the box only as wide as needed */
+}
+
+/* Different spacing for row 1 and row 2 */
+.row1 {
+    margin: 6vmin 14vmin 0 8vmin;   /* your original spacing */
+}
+
+/* Row 2 is lower and more "inward" from the sides */
+.row2 {
+    margin: 10vmin 18vmin 0 12vmin; /* more top margin + bigger side margins */
+}
+
+/* Dollar sign styling inside number-box */
+.number-box .currency {
+    margin-right: 0.5rem;  /* small space between $ and number */
+    font-size: 0.8em;      /* slightly smaller than the digits */
+}
+
+.number-box .number {
+    letter-spacing: 0.12em; /* spread digits a bit for a digital feel */
+}
+
+/* On very small screens, stack the number over the barcode */
+@media (max-width: 600px) {
+    .number-barcode-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-right: 8vmin;
+        /* still keep a bit of space for nav */
+    }
+}
+
+/* ===========================
+   5. BARCODE WINDOW + ANIMATION
+   =========================== */
+
+/* Fixed outer rectangle that shows only a portion of the long barcode */
+.barcode-window {
+    width: 28vw;
+    /* responsive width */
+    height: 8vw;
+    /* responsive height (keeps ratio) */
+    max-width: 220px;
+    /* prevent it from becoming too large */
+    max-height: 80px;
+    overflow: hidden;
+    /* hide the rest of the long image */
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+/* The long barcode image that slides horizontally */
+.barcode-strip {
+    height: 100%;
+    /* fill the container vertically */
+    width: auto;
+    /* keep aspect ratio */
+    transform: translateX(0);
+
+    /* total duration: 2.5s, 20 steps => ~0.125s per visual change.
+       You can change 2.5s or 20 to tweak speed. */
+    animation: barcode-move 2.5s steps(20, end) infinite;
+}
+
+/* Animation: slide the long barcode image to the left.
+   When it reaches the end, it jumps back and loops. */
+@keyframes barcode-move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        /* distance depends on how wide your barcode image is.
+           Adjust this value until the motion looks good. */
+        transform: translateX(-800px);
+    }
+}
+
+/* On very small screens, make the barcode wider relative to screen */
+@media (max-width: 600px) {
+    .barcode-window {
+        width: 70vw;
+        height: 18vw;
+        max-width: none;
+        max-height: none;
+    }
+}
+
+/* SVG that covers the whole screen so the line can be placed freely */
+.connector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;   /* make sure line does NOT block clicking */
+}
+
+/* Style of the connector line */
+#nb-line {
+    stroke: #005DCD;   /* your blue color */
+    stroke-width: 2.5px;
+}
+

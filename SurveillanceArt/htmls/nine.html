@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ServeillanceArt</title>
+    <meta name="author" content="Your Name">
+    <meta name="copyright" content="© Ziyan Pan, cart 211 project, fall 2025,">
+    <link rel="stylesheet" href="../csss/nine.css">
+</head>
+
+<body>
+    <nav class="side-nav">
+        <a href="one.html" class="nav-dot">1</a>
+        <a href="sample.html" class="nav-dot">2</a>
+        <a href="three.html" class="nav-dot">3</a>
+        <a href="four.html" class="nav-dot">4</a>
+        <a href="five.html" class="nav-dot">5</a>
+        <a href="six.html" class="nav-dot">6</a>
+        <a href="seven.html" class="nav-dot">7</a>
+        <a href="eight.html" class="nav-dot">8</a>
+        <a href="nine.html" class="nav-dot active">9</a>
+        <a href="ten.html" class="nav-dot">10</a>
+    </nav>
+
+    <main>
+    <h1 class="title">
+        I'M<span class="title-space"> </span><br class="title-break">TITLE
+    </h1>
+
+    <!-- ROW 1 -->
+    <div class="number-barcode-row row1">
+        <div class="number-box">
+            <span class="currency">$</span>
+            <span class="number" id="randomNumber1">0894</span>
+        </div>
+
+        <div class="barcode-window" id="barcodeWindow1">
+            <img src="../assets/images/barcode1.png" alt="Animated barcode" class="barcode-strip">
+        </div>
+    </div>
+
+    <!-- ROW 2 (lower + more inset towards center) -->
+    <div class="number-barcode-row row2">
+        <div class="number-box">
+            <span class="currency">$</span>
+            <span class="number" id="randomNumber2">7321</span>
+        </div>
+
+        <div class="barcode-window" id="barcodeWindow2">
+            <img src="../assets/images/barcode1.png" alt="Animated barcode" class="barcode-strip">
+        </div>
+    </div>
+
+    <!-- SVG line still connects the FIRST pair -->
+    <svg class="connector" id="connectorSVG">
+        <line id="nb-line" />
+    </svg>
+</main>
+
+   <script>
+    function updateRandomNumber(id) {
+        // generate a number between 0 and 9999
+        let num = Math.floor(Math.random() * 10000);
+
+        // format with leading zeros (e.g. 0043)
+        num = num.toString().padStart(4, '0');
+
+        // only update the digits span, not the dollar sign
+        const span = document.getElementById(id);
+        if (span) {
+            span.textContent = num;
+        }
+    }
+
+    // change both numbers every 0.08 seconds (80 ms)
+    setInterval(() => updateRandomNumber('randomNumber1'), 80);
+    setInterval(() => updateRandomNumber('randomNumber2'), 80);
+
+
+    // --- line between first number and first barcode ---
+
+    function updateLine() {
+        const numberBox = document.querySelector('.row1 .number-box');
+        const barcode = document.querySelector('.row1 .barcode-window');
+        const line = document.getElementById('nb-line');
+
+        if (!numberBox || !barcode || !line) return;
+
+        const nbRect = numberBox.getBoundingClientRect();
+        const bcRect = barcode.getBoundingClientRect();
+
+        const x1 = nbRect.right;                     // right border of number-box
+        const y1 = nbRect.top + nbRect.height / 2;   // vertical middle
+
+        const x2 = bcRect.left;                      // left border of barcode
+        const y2 = bcRect.top + bcRect.height / 2;   // vertical middle
+
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+    }
+
+    window.addEventListener("resize", updateLine);
+    window.addEventListener("load", updateLine);
+    setInterval(updateLine, 50);
+</script>
+
+
+</body>

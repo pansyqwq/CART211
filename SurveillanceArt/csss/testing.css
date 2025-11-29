@@ -170,3 +170,33 @@ body {
             rgba(25, 64, 255, 1) 0%,
             #ffffff 100%);
 }
+/* The fixed outer rectangle (the “window”) */
+.barcode-window {
+    width: 150px;               /* final barcode width – adjust */
+    height: 70px;               /* final barcode height – adjust */
+    border: 3px solid #005DCD;  /* same blue as your design */
+    overflow: hidden;           /* hide the rest of the long image */
+    box-sizing: border-box;
+    display: inline-block;      /* so it sits nicely in a row */
+}
+
+/* The long barcode image inside */
+.barcode-strip {
+    height: 100%;       /* match window height */
+    width: auto;        /* keep image aspect ratio */
+    transform: translateX(0);
+    
+    /* 4s animation, 20 steps → 4 / 20 = 0.2s per “change” */
+    animation: barcode-move 4s steps(20, end) infinite;
+}
+
+/* Move the long barcode from left to right (or right to left) */
+@keyframes barcode-move {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        /* how far the image slides; tweak this value */
+        transform: translateX(-400px);
+    }
+}
